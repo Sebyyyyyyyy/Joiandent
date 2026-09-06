@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="JoianDent — clinică stomatologică în Ungheni. Stomatologie modernă, într-un spațiu confortabil și sigur." />
+  <meta name="theme-color" content="#142D90" />
+  <title>JoianDent — Clinică Stomatologică Ungheni</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;700&family=Merriweather+Sans:wght@400;600;700&family=Montserrat:wght@200;300;400;500;600;700&family=Playfair+Display+SC:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="site-header" id="top">
+    <div class="nav-shell">
+      <a class="brand" href="#acasa" aria-label="JoianDent Acasă">
+        <img class="brand-logo brand-logo-mark" src="assets/logo-mark.png" alt="" aria-hidden="true">
+        <span class="brand-text">JoianDent</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Navigație principală">
+        <a class="active" href="#acasa">Acasă</a>
+        <a href="#servicii">Vezi serviciile</a>
+        <a href="#program">Program</a>
+        <a href="#contact">Contacte</a>
+      </nav>
+
+      <a class="btn btn-primary desktop-cta appointment-trigger" href="#programare">Programează-te</a>
+
+      <button class="menu-toggle" type="button" aria-label="Deschide meniul" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <nav class="mobile-nav" aria-label="Navigație mobilă">
+      <a href="#acasa">Acasă</a>
+      <a href="#servicii">Vezi serviciile</a>
+      <a href="#program">Program</a>
+      <a href="#contact">Contacte</a>
+      <a class="btn btn-primary appointment-trigger" href="#programare">Programează-te</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="acasa">
+      <img class="hero-image" src="assets/clinic-hq.webp" alt="Interiorul clinicii JoianDent" fetchpriority="high" decoding="async" />
+      <div class="hero-overlay"></div>
+      <div class="hero-content reveal">
+        <p class="eyebrow">JoianDent · Ungheni</p>
+        <h1>Clinică Stomatologică</h1>
+        <p class="hero-address">str. Romană 7/1</p>
+        <a class="btn btn-primary btn-lg appointment-trigger" href="#programare">Programează-te</a>
+      </div>
+      <div class="hero-signature">JoianDent</div>
+    </section>
+
+    <section class="section intro-section">
+      <div class="section-heading">
+        <span></span>
+        <h2>Your Favourite Clinic</h2>
+        <span></span>
+      </div>
+
+      <div class="intro-grid container">
+        <div class="photo-panel reveal">
+          <img src="assets/treatment-hq.webp" alt="Medic JoianDent în timpul unei proceduri stomatologice"  loading="lazy" decoding="async" />
+        </div>
+
+        <div class="intro-copy reveal">
+          <p class="kicker">Îngrijire atentă. Tehnologie modernă.</p>
+          <h3>Un zâmbet sănătos începe aici</h3>
+          <p>Stomatologie modernă, într-un spațiu confortabil și sigur. Punem accent pe comunicare clară, precizie și o experiență plăcută pentru fiecare pacient.</p>
+          <a class="btn btn-primary appointment-trigger" href="#programare">Programează-te</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section services-section" id="servicii">
+      <div class="section-heading">
+        <span></span>
+        <h2>Serviciile Noastre</h2>
+        <span></span>
+      </div>
+
+      <div class="services-grid container">
+        <article class="service-card reveal">
+          <div class="service-icon" aria-hidden="true">✦</div>
+          <h3>Chirurgie</h3>
+          <p>Intervenții realizate cu atenție, precizie și confort pentru pacient.</p>
+        </article>
+        <article class="service-card reveal">
+          <div class="service-icon" aria-hidden="true">◇</div>
+          <h3>Implantologie</h3>
+          <p>Soluții moderne pentru restaurarea funcției și esteticii zâmbetului.</p>
+        </article>
+        <article class="service-card reveal">
+          <div class="service-icon" aria-hidden="true">○</div>
+          <h3>Protezare</h3>
+          <p>Restaurări personalizate, adaptate nevoilor și fizionomiei pacientului.</p>
+        </article>
+        <article class="service-card reveal">
+          <div class="service-icon" aria-hidden="true">⌁</div>
+          <h3>Ortodonție</h3>
+          <p>Evaluare și tratament pentru alinierea corectă a dinților și mușcăturii.</p>
+        </article>
+        <article class="service-card reveal">
+          <div class="service-icon" aria-hidden="true">＋</div>
+          <h3>Terapie</h3>
+          <p>Tratamente conservative pentru sănătatea și protejarea dinților naturali.</p>
+        </article>
+      </div>
+
+      <div class="services-cta">
+        <a class="btn btn-primary appointment-trigger" href="#programare">Programează-te</a>
+      </div>
+    </section>
+
+    <section class="section about-section" id="despre">
+      <div class="section-heading">
+        <span></span>
+        <h2>Despre Clinică</h2>
+        <span></span>
+      </div>
+
+      <div class="about-visual reveal">
+        <div class="about-side left"></div>
+        <div class="about-image-frame">
+          <img src="assets/about-clinic-hq.webp" alt="Zâmbet sănătos — JoianDent"  loading="lazy" decoding="async" />
+        </div>
+        <div class="about-side right"></div>
+      </div>
+
+      <div class="about-copy container reveal">
+        <h3>Alătură-te familiei</h3>
+        <p>La JoianDent, punem pe primul loc sănătatea și confortul fiecărui pacient. Combinăm experiența echipei medicale cu tehnologia modernă pentru a oferi tratamente stomatologice sigure, precise și adaptate fiecărei persoane.</p>
+
+        <div class="stats">
+          <div><strong>20+</strong><span>ani de experiență</span></div>
+          <div><strong>5</strong><span>categorii de servicii</span></div>
+          <div><strong>1</strong><span>echipă dedicată</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section team-section" id="echipa">
+      <div class="section-heading">
+        <span></span>
+        <h2>Echipa Noastră</h2>
+        <span></span>
+      </div>
+
+      <div class="team-grid container">
+        <article class="person-card reveal">
+          <div class="person-photo">
+            <img src="assets/dr-cristian-ultra.webp" alt="Dr. Cristian Joian"  loading="lazy" decoding="async" />
+          </div>
+          <div class="person-info">
+            <h3>Dr. Cristian Joian</h3>
+            <p>Medic stomatolog</p>
+          </div>
+        </article>
+
+        <article class="person-card reveal">
+          <div class="person-photo">
+            <img src="assets/dr-nicolae-ultra.webp" alt="Dr. Nicolae Joian"  loading="lazy" decoding="async" />
+          </div>
+          <div class="person-info">
+            <h3>Dr. Nicolae Joian</h3>
+            <p>Medic stomatolog</p>
+          </div>
+        </article>
+
+        <article class="assistants-card reveal">
+          <img src="assets/assistants-hq.webp" alt="Echipa de asistente JoianDent"  loading="lazy" decoding="async" />
+          <div class="assistants-info">
+            <div>
+              <h3>Asistente</h3>
+              <p>Ana Cojocari · Ana Mușet · Vera Bîlea</p>
+            </div>
+            <span class="team-badge">Echipă JoianDent</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="map-wrap">
+        <iframe
+          title="Locația JoianDent pe Google Maps"
+          src="https://www.google.com/maps?q=JoianDent%20Ungheni%20strada%20Romana%207%2F1&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="contact-panel">
+        <p class="contact-label">Contact</p>
+        <h2>Lăsați-ne un mesaj</h2>
+
+        <form class="contact-form" action="https://formsubmit.co/joiandent2006@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Mesaj nou de pe site-ul JoianDent">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+
+          <label>
+            <span>Nume și prenume</span>
+            <input name="Nume" type="text" autocomplete="name" required>
+          </label>
+
+          <label>
+            <span>Telefon</span>
+            <input name="Telefon" type="tel" autocomplete="tel" required>
+          </label>
+
+          <label>
+            <span>Email</span>
+            <input name="Email" type="email" autocomplete="email" required>
+          </label>
+
+          <label>
+            <span>Subiect</span>
+            <input name="Subiect" type="text" required>
+          </label>
+
+          <label class="full">
+            <span>Mesajul dumneavoastră</span>
+            <textarea name="Mesaj" rows="5" required></textarea>
+          </label>
+
+          <p class="privacy-note full">Nu includeți în formular informații medicale sensibile.</p>
+
+          <button class="btn btn-primary submit-btn" type="submit">Trimite</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+
+  <div class="appointment-modal" id="programare" aria-hidden="true">
+    <div class="appointment-backdrop" data-close-modal></div>
+
+    <section class="appointment-dialog" role="dialog" aria-modal="true" aria-labelledby="appointment-title">
+      <button class="modal-close" type="button" aria-label="Închide programarea" data-close-modal>×</button>
+
+      <div class="modal-brand">
+        <img src="assets/logo-mark.png" alt="" aria-hidden="true">
+        <div>
+          <p>JoianDent · Ungheni</p>
+          <h2 id="appointment-title">Programează-te</h2>
+        </div>
+      </div>
+
+      <p class="modal-intro">Completează datele de mai jos, iar solicitarea va fi trimisă direct clinicii.</p>
+
+      <form class="appointment-form" action="https://formsubmit.co/joiandent2006@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Programare nouă de pe site-ul JoianDent">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+
+        <label>
+          <span>Nume și prenume</span>
+          <input name="Nume și prenume" type="text" autocomplete="name" placeholder="Ex: Ion Popescu" required>
+        </label>
+
+        <label>
+          <span>Telefon</span>
+          <input name="Telefon" type="tel" autocomplete="tel" placeholder="+373 ..." required>
+        </label>
+
+        <label>
+          <span>Email</span>
+          <input name="Email" type="email" autocomplete="email" placeholder="exemplu@email.com" required>
+        </label>
+
+        <label>
+          <span>Serviciu</span>
+          <select name="Serviciu" required>
+            <option value="" selected disabled>Alege serviciul</option>
+            <option>Chirurgie</option>
+            <option>Implantologie</option>
+            <option>Protezare</option>
+            <option>Ortodonție</option>
+            <option>Terapie</option>
+            <option>Consultație / Alt serviciu</option>
+          </select>
+        </label>
+
+        <label class="modal-full">
+          <span>Mesaj</span>
+          <textarea name="Mesaj" rows="5" placeholder="Scrie pe scurt cum te putem ajuta..." required></textarea>
+        </label>
+
+        <p class="modal-privacy modal-full">Nu include informații medicale sensibile în mesaj.</p>
+
+        <button class="btn btn-primary modal-submit modal-full" type="submit">
+          Trimite solicitarea
+        </button>
+      </form>
+    </section>
+  </div>
+
+
+  <footer class="site-footer" id="program">
+    <div class="footer-grid container">
+      <div class="footer-brand">
+        <a class="footer-logo-link" href="#top" aria-label="JoianDent - sus">
+          <img class="footer-logo" src="assets/logo-full.png" alt="JoianDent">
+        </a>
+        <p>Clinică stomatologică · Ungheni</p>
+      </div>
+
+      <div>
+        <h3>Informații</h3>
+        <a href="tel:+37323623270">0236-232-70</a>
+        <a href="mailto:joiandent2006@gmail.com">joiandent2006@gmail.com</a>
+        <p>Luni–vineri: 9:00–17:00</p>
+        <p>Pauză de masă: 12:30–14:30</p>
+      </div>
+
+      <div>
+        <h3>Rețele sociale</h3>
+        <a class="social-link" href="https://www.instagram.com/joiandent/" target="_blank" rel="noopener noreferrer" aria-label="Instagram JoianDent">
+          <span class="social-icon" aria-hidden="true">◎</span><span>@joiandent</span>
+        </a>
+        <a class="social-link" href="https://www.facebook.com/Joiandent" target="_blank" rel="noopener noreferrer" aria-label="Facebook JoianDent">
+          <span class="social-icon" aria-hidden="true">f</span><span>@Joiandent</span>
+        </a>
+      </div>
+
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> JoianDent. Toate drepturile rezervate.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
