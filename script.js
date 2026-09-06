@@ -1,18 +1,39 @@
 const header = document.querySelector(".site-header");
 const menuBtn = document.querySelector(".menu-toggle");
+const mobileNav = document.querySelector(".mobile-nav");
 const mobileLinks = document.querySelectorAll(".mobile-nav a");
 
-menuBtn?.addEventListener("click", () => {
-  const open = header.classList.toggle("menu-open");
+function setMobileMenu(open) {
+  if (!header || !menuBtn || !mobileNav) return;
+
+  header.classList.toggle("menu-open", open);
   menuBtn.setAttribute("aria-expanded", String(open));
+  menuBtn.setAttribute("aria-label", open ? "Închide meniul" : "Deschide meniul");
+  mobileNav.setAttribute("aria-hidden", String(!open));
+}
+
+menuBtn?.addEventListener("click", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  const open = !header?.classList.contains("menu-open");
+  setMobileMenu(open);
 });
 
 mobileLinks.forEach(link => {
-  link.addEventListener("click", () => {
-    header.classList.remove("menu-open");
-    menuBtn?.setAttribute("aria-expanded", "false");
-  });
+  link.addEventListener("click", () => setMobileMenu(false));
 });
+
+document.addEventListener("click", (event) => {
+  if (header?.classList.contains("menu-open") && !header.contains(event.target)) {
+    setMobileMenu(false);
+  }
+});
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 980) setMobileMenu(false);
+});
+
+setMobileMenu(false);
 
 // Reveal on scroll
 const revealItems = document.querySelectorAll(".reveal");
