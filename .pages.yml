@@ -1,0 +1,170 @@
+media:
+  input: assets
+  output: /assets
+  rename: safe
+  extensions:
+    - jpg
+    - jpeg
+    - png
+    - webp
+    - avif
+content:
+  - name: general
+    label: 01 · Informații și prima pagină
+    type: file
+    path: content/general.json
+    format: json
+    fields:
+      - name: heroTitle
+        label: Titlu principal
+        type: object
+        fields:
+          - { name: ro, type: string, label: Română }
+          - { name: ru, type: string, label: Rusă }
+          - { name: en, type: string, label: Engleză }
+      - name: heroImage
+        label: Fotografia principală
+        type: image
+      - name: introTitle
+        label: Titlu introductiv
+        type: object
+        fields:
+          - { name: ro, type: string, label: Română }
+          - { name: ru, type: string, label: Rusă }
+          - { name: en, type: string, label: Engleză }
+      - name: introDescription
+        label: Text introductiv
+        type: object
+        fields:
+          - { name: ro, type: text, label: Română }
+          - { name: ru, type: text, label: Rusă }
+          - { name: en, type: text, label: Engleză }
+      - name: aboutTitle
+        label: Titlu despre clinică
+        type: object
+        fields:
+          - { name: ro, type: string, label: Română }
+          - { name: ru, type: string, label: Rusă }
+          - { name: en, type: string, label: Engleză }
+      - name: aboutDescription
+        label: Descriere clinică
+        type: object
+        fields:
+          - { name: ro, type: text, label: Română }
+          - { name: ru, type: text, label: Rusă }
+          - { name: en, type: text, label: Engleză }
+      - { name: phone, type: string, label: Telefon afișat }
+      - { name: phoneLink, type: string, label: "Telefon (format internațional +373...)" }
+      - { name: email, type: string, label: Email pentru programări și recenzii }
+      - { name: address, type: string, label: Adresă }
+      - name: hours
+        label: Program de lucru
+        type: object
+        fields:
+          - { name: ro, type: string, label: Română }
+          - { name: ru, type: string, label: Rusă }
+          - { name: en, type: string, label: Engleză }
+      - name: break
+        label: Pauză de masă
+        type: object
+        fields:
+          - { name: ro, type: string, label: Română }
+          - { name: ru, type: string, label: Rusă }
+          - { name: en, type: string, label: Engleză }
+  - name: services
+    label: 02 · Servicii stomatologice
+    type: file
+    path: content/services.json
+    format: json
+    list: true
+    fields:
+      - name: id
+        label: Identificator unic (fără spații)
+        type: string
+        required: true
+        description: "Ex.: implantologie. Nu schimba ID-ul dacă este folosit la cazuri."
+      - { name: icon, type: string, label: Simbol pentru serviciu }
+      - name: title
+        label: Denumire în 3 limbi
+        type: object
+        fields:
+          - { name: ro, type: string, label: Română }
+          - { name: ru, type: string, label: Rusă }
+          - { name: en, type: string, label: Engleză }
+      - name: description
+        label: Descriere în 3 limbi
+        type: object
+        fields:
+          - { name: ro, type: text, label: Română }
+          - { name: ru, type: text, label: Rusă }
+          - { name: en, type: text, label: Engleză }
+  - name: team
+    label: 03 · Echipa clinicii
+    type: file
+    path: content/team.json
+    format: json
+    list: true
+    fields:
+      - { name: id, type: string, label: Identificator unic, required: true }
+      - { name: name, type: string, label: Nume afișat, required: true }
+      - name: type
+        label: Tip profil
+        type: select
+        options:
+          values:
+            - { label: Medic stomatolog, name: doctor }
+            - { label: Grup / asistente, name: team }
+      - name: role
+        label: Funcție în 3 limbi
+        type: object
+        fields:
+          - { name: ro, type: string, label: Română }
+          - { name: ru, type: string, label: Rusă }
+          - { name: en, type: string, label: Engleză }
+      - { name: image, type: image, label: Fotografie }
+      - { name: details, type: text, label: "Detalii pentru grup (o persoană pe rând)" }
+  - name: cases
+    label: 04 · Înainte și După
+    type: file
+    path: content/cases.json
+    format: json
+    list: true
+    fields:
+      - { name: id, type: string, label: ID caz, required: true }
+      - { name: category, type: string, label: "ID serviciu (ex: ortodontie)", required: true }
+      - name: title
+        label: Titlul cazului în 3 limbi
+        type: object
+        fields:
+          - { name: ro, type: string, label: Română }
+          - { name: ru, type: string, label: Rusă }
+          - { name: en, type: string, label: Engleză }
+      - name: description
+        label: Descrierea în 3 limbi
+        type: object
+        fields:
+          - { name: ro, type: text, label: Română }
+          - { name: ru, type: text, label: Rusă }
+          - { name: en, type: text, label: Engleză }
+      - { name: before, type: image, label: Fotografie ÎNAINTE }
+      - { name: after, type: image, label: Fotografie DUPĂ }
+      - { name: consent, type: boolean, label: Există acord documentat pentru publicare, default: false }
+      - { name: published, type: boolean, label: Publică acest caz, default: false }
+  - name: reviews
+    label: 05 · Recenzii aprobate
+    type: file
+    path: content/reviews.json
+    format: json
+    list: true
+    fields:
+      - { name: id, type: string, label: Identificator recenzie, required: true }
+      - { name: author, type: string, label: Nume afișat (fără date private), required: true }
+      - name: rating
+        label: Număr de stele (1–5)
+        type: number
+        required: true
+        options:
+          min: 1
+          max: 5
+      - { name: text, type: text, label: Recenzie verificată, required: true }
+      - { name: published, type: boolean, label: Publică pe site, default: false }
