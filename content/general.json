@@ -1,0 +1,42 @@
+{
+  "heroTitle": {
+    "ro": "Clinică Stomatologică",
+    "ru": "Стоматологическая клиника",
+    "en": "Dental Clinic"
+  },
+  "introTitle": {
+    "ro": "Un zâmbet sănătos începe aici",
+    "ru": "Здоровая улыбка начинается здесь",
+    "en": "A healthy smile starts here"
+  },
+  "introDescription": {
+    "ro": "Stomatologie modernă, într-un spațiu confortabil și sigur. Punem accent pe comunicare clară, precizie și o experiență plăcută pentru fiecare pacient.",
+    "ru": "Современная стоматология в уютной и безопасной атмосфере. Мы уделяем внимание ясному общению, точности и комфорту каждого пациента.",
+    "en": "Modern dentistry in a comfortable, safe setting. We focus on clear communication, precision, and a welcoming experience for every patient."
+  },
+  "aboutTitle": {
+    "ro": "Alătură-te familiei",
+    "ru": "Добро пожаловать в нашу семью",
+    "en": "Welcome to the family"
+  },
+  "aboutDescription": {
+    "ro": "La JoianDent, punem pe primul loc sănătatea și confortul fiecărui pacient. Combinăm experiența echipei medicale cu tehnologia modernă pentru a oferi tratamente stomatologice sigure, precise și adaptate fiecărei persoane.",
+    "ru": "В JoianDent здоровье и комфорт пациентов — на первом месте. Наша команда объединяет опыт и современные технологии для персонализированного лечения.",
+    "en": "At JoianDent, patient health and comfort come first. Our team combines experience and modern technology to provide precise, personalized care."
+  },
+  "phone": "0236-232-70",
+  "phoneLink": "+37323623270",
+  "email": "joiandent2006@gmail.com",
+  "address": "str. Romană 7/1",
+  "hours": {
+    "ro": "Luni–vineri: 9:00–17:00",
+    "ru": "Понедельник–пятница: 9:00–17:00",
+    "en": "Monday–Friday: 9:00–17:00"
+  },
+  "break": {
+    "ro": "Pauză de masă: 12:30–14:30",
+    "ru": "Перерыв: 12:30–14:30",
+    "en": "Lunch break: 12:30–14:30"
+  },
+  "heroImage": "assets/clinic-hero-original.jpg"
+}

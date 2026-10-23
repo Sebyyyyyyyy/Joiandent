@@ -1,0 +1,72 @@
+[
+  {
+    "id": "chirurgie",
+    "icon": "✦",
+    "title": {
+      "ro": "Chirurgie",
+      "ru": "Хирургия",
+      "en": "Surgery"
+    },
+    "description": {
+      "ro": "Intervenții realizate cu atenție, precizie și confort pentru pacient.",
+      "ru": "Хирургические процедуры с вниманием к точности и комфорту пациента.",
+      "en": "Procedures performed with precision, care, and patient comfort in mind."
+    }
+  },
+  {
+    "id": "implantologie",
+    "icon": "◇",
+    "title": {
+      "ro": "Implantologie",
+      "ru": "Имплантология",
+      "en": "Implantology"
+    },
+    "description": {
+      "ro": "Soluții moderne pentru restaurarea funcției și esteticii zâmbetului.",
+      "ru": "Современные решения для восстановления функции и эстетики улыбки.",
+      "en": "Modern solutions to restore function and smile aesthetics."
+    }
+  },
+  {
+    "id": "protezare",
+    "icon": "○",
+    "title": {
+      "ro": "Protezare",
+      "ru": "Протезирование",
+      "en": "Prosthodontics"
+    },
+    "description": {
+      "ro": "Restaurări personalizate, adaptate nevoilor și fizionomiei pacientului.",
+      "ru": "Индивидуальные реставрации с учётом потребностей пациента.",
+      "en": "Custom restorations tailored to each patient."
+    }
+  },
+  {
+    "id": "ortodontie",
+    "icon": "⌁",
+    "title": {
+      "ro": "Ortodonție",
+      "ru": "Ортодонтия",
+      "en": "Orthodontics"
+    },
+    "description": {
+      "ro": "Evaluare și tratament pentru alinierea corectă a dinților și mușcăturii.",
+      "ru": "Диагностика и лечение для правильного положения зубов и прикуса.",
+      "en": "Assessment and treatment for tooth alignment and bite."
+    }
+  },
+  {
+    "id": "terapie",
+    "icon": "＋",
+    "title": {
+      "ro": "Terapie",
+      "ru": "Терапия",
+      "en": "Restorative care"
+    },
+    "description": {
+      "ro": "Tratamente conservative pentru sănătatea și protejarea dinților naturali.",
+      "ru": "Щадящее лечение для сохранения здоровья натуральных зубов.",
+      "en": "Conservative treatments to maintain and protect natural teeth."
+    }
+  }
+]

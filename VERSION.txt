@@ -1,0 +1,6 @@
+JoianDent V2.5 — Pages CMS / GitHub
+Derivat din: JoianDent V2.4.1, 23 octombrie 2026
+Fără PHP. Config CMS: .pages.yml. Fișiere editabile: content/*.json.
+Recenziile noi ajung pe email pentru aprobare manuală în Pages CMS.
+Fotografiile originale ale medicilor și primei pagini sunt păstrate.
+IMPORTANT: această arhivă NU a fost publicată automat pe domeniu sau GitHub.

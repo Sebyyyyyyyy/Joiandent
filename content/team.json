@@ -1,0 +1,36 @@
+[
+  {
+    "id": "cristian",
+    "name": "Dr. Cristian Joian",
+    "role": {
+      "ro": "Medic stomatolog",
+      "ru": "Врач-стоматолог",
+      "en": "Dentist"
+    },
+    "image": "assets/dr-cristian-original.jpg",
+    "type": "doctor"
+  },
+  {
+    "id": "nicolae",
+    "name": "Dr. Nicolae Joian",
+    "role": {
+      "ro": "Medic stomatolog",
+      "ru": "Врач-стоматолог",
+      "en": "Dentist"
+    },
+    "image": "assets/dr-nicolae-original.jpg",
+    "type": "doctor"
+  },
+  {
+    "id": "assistants",
+    "name": "Asistentele noastre",
+    "role": {
+      "ro": "Echipa JoianDent",
+      "ru": "Команда JoianDent",
+      "en": "JoianDent Team"
+    },
+    "image": "assets/assistants-web.webp",
+    "type": "team",
+    "details": "Ana Cojocari\nAna Mușet\nVera Bîlea"
+  }
+]
