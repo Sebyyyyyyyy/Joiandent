@@ -61,3 +61,26 @@ apoi deschide `http://localhost:8000/`.
 - `admin/index.html`: acces rapid la aplicația Pages CMS
 
 **Nu s-a făcut nicio publicare pe GitHub, Cloudflare sau `joiandent.md` prin această arhivă.**
+
+
+## Panou propriu JoianDent — acces administrator și editor (V2.5-test)
+
+Interfața nouă este \`/admin/\` și API-ul său Cloudflare Pages Functions este \`/api/admin\`.
+Este o versiune **de test**, nu activa niciun domeniu public înaintea configurării.
+
+**Conturi separate**
+- \`OWNER_EMAIL\`: adresa administratorului principal (o singură adresă).
+- \`EDITOR_EMAILS\`: adresele colaboratorilor JoianDent, separate prin virgulă.
+- Nu folosi aceeași parolă pentru toți; autentificarea este gestionată prin Cloudflare Zero Trust Access (politici de acces pentru exact adresele permise).
+- În această versiune administratorul și editorii pot modifica aceleași 5 categorii. Administratorul controlează lista de adrese permise și secretele numai din Cloudflare, nu din panou.
+
+**Configurare Cloudflare (înainte să funcționeze):**
+1. Creează un proiect **Cloudflare Pages de test**, conectat la ramura \`joiandent-v2.5\`, fără domeniul \`joiandent.md\`. Site static, fără comandă de build, director de ieșire rădăcina proiectului. Funcțiile din \`functions/\` trebuie să ruleze pe Cloudflare Pages, nu pe Vercel.
+2. Configurează **Cloudflare Access** pentru **ambele** căi: \`/admin/*\` și \`/api/admin*\` ale domeniului de test. Doar adresele autorizate pot trece de acces. Pentru a identifica conturile API-ul verifică criptografic semnătura JWT Access, audiența, expirarea și emailul.
+3. În setările Pages pentru mediul Preview setează variabilele \`CF_ACCESS_TEAM_DOMAIN\` (de ex. \`clinica.cloudflareaccess.com\`) și \`CF_ACCESS_AUD\` (audiența JWT a aplicației Access), \`OWNER_EMAIL\`, \`EDITOR_EMAILS\`, \`GH_REPO=Sebyyyyyyyy/Joiandent\` și \`GH_BRANCH=joiandent-v2.5\`. Configurează \`GH_TOKEN\` ca **secret criptat**, nu în GitHub. Tokenul trebuie să permită doar accesul necesar la repository și la fișierele sale. Nu publica sau trimite tokenuri în conversații.
+4. Lasă \`ALLOW_PRODUCTION_WRITES\` nedefinit, astfel încât aplicația să refuze explicit scrierea directă pe \`main\` sau \`master\`.
+5. Testează cu contul principal și cu un cont editor: autentificare, modificări conținut, imagini, recenzii, revenire la commit anterior. Nu folosi date reale ale pacienților în test.
+
+**Notă:** datele din \`content/*.json\` și imaginile \`assets/\` sunt vizibile în repository-ul public. Publică numai recenzii aprobate și cazuri cu acord documentat. Nu stoca fișe medicale, date sensibile sau cereri private în GitHub.
+
+**Limitări:** loginul Cloudflare necesită configurarea ta a celor două conturi/permisiuni și a secretelor. Fără ele API-ul răspunde cu indisponibil, iar panoul nu poate salva. Pages CMS extern rămâne disponibil ca alternativă pentru editarea directă din GitHub.
