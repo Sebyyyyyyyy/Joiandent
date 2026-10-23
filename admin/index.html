@@ -1,9 +1,181 @@
 <!doctype html>
-<html lang="ro"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>JoianDent — Administrare</title><style>
-:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#17294a;background:#f4f7fc}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:20px}main{width:min(100%,520px);background:white;border-radius:24px;padding:clamp(26px,6vw,44px);box-shadow:0 20px 65px #182e5815;border:1px solid #e5ebf5}h1{font-size:26px;letter-spacing:-.045em;margin:0 0 12px}p{font-size:15px;line-height:1.65;color:#536278}a.button{display:block;margin:28px 0 16px;text-align:center;text-decoration:none;background:#173a91;color:#fff;border-radius:12px;padding:16px;font-weight:700}a.button:hover{background:#0b2365}.note{font-size:13px;color:#66758a}.logo{width:76px;margin:0 0 25px}.back{color:#315cac;font-size:14px;text-decoration:none}</style></head><body><main>
-<img class="logo" src="../assets/logo-mark.png" alt="JoianDent"/>
-<h1>Panoul de administrare</h1>
-<p>Conținutul JoianDent se gestionează din Pages CMS. Modificările sunt salvate în GitHub și publicate automat de serviciul de găzduire conectat.</p>
-<a class="button" href="https://app.pagescms.org/" target="_blank" rel="noopener noreferrer">Deschide Pages CMS →</a>
-<p class="note">La prima utilizare, autentifică-te cu GitHub și autorizează accesul numai la repository-ul JoianDent. Apoi deschide secțiunea dorită. Nu există parolă implicită a site-ului.</p>
-<a class="back" href="../">← Înapoi la site</a></main></body></html>
+<html lang="ro"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>JoianDent · Administrare</title>
+<style>
+:root{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:#152342;background:#f5f7fc;--blue:#18378e}*{box-sizing:border-box}
+body{margin:0}button,input,textarea,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}
+a{color:var(--blue)}.layout{display:grid;grid-template-columns:264px minmax(0,1fr);min-height:100vh}
+aside{background:white;border-right:1px solid #e4eaf3;padding:25px 14px;display:flex;flex-direction:column;gap:24px}
+.brand{display:flex;align-items:center;gap:12px;padding:0 12px}.brand img{width:38px}.brand strong{font-size:20px}.brand small{font-size:11px;color:#8290a7;display:block}
+nav{display:grid;gap:6px}nav button{border:0;background:transparent;color:#57657b;text-align:left;border-radius:12px;padding:13px 15px;font-weight:600;font-size:14px}
+nav button.selected{background:#edf2ff;color:#173a91}nav button:hover{background:#f1f4fb}
+aside .foot{margin-top:auto;border-top:1px solid #e6ebf2;padding:20px 12px;font-size:12px;overflow-wrap:anywhere;color:#65738b}
+main{width:min(1200px,100%);margin:0 auto;padding:28px clamp(16px,4vw,52px)}header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:28px;flex-wrap:wrap}
+h1{font-size:clamp(24px,3vw,32px);letter-spacing:-.045em;margin:0}h2{font-size:18px;margin:0 0 18px}
+.muted{font-size:14px;color:#77839a;line-height:1.6}.pill{background:#ebf2ff;color:#2955a2;border-radius:100px;padding:8px 12px;font-size:12px;font-weight:700}
+.btn{border:1px solid #d9e2f1;background:#fff;color:#23375a;border-radius:10px;padding:11px 16px;font-weight:700}
+.primary{border-color:var(--blue);background:var(--blue);color:white}.danger{color:#ac3140;border-color:#f4d9de}
+.topbuttons{display:flex;gap:8px;align-items:center}.sheet{border:1px solid #e1e8f3;box-shadow:0 6px 26px #28467709;border-radius:19px;background:#fff;padding:clamp(18px,3vw,28px);margin:18px 0}
+.status{border-radius:12px;background:#fff4e8;color:#874d0e;padding:16px 18px;margin-bottom:20px;line-height:1.55;font-size:14px}
+.status.good{background:#eaf7f0;color:#24684d}.status.bad{background:#fff0f2;color:#a33043}
+.field{display:grid;gap:7px;margin:0 0 18px}.field>label{font-weight:700;font-size:13px}.field input,.field textarea,.field select{width:100%;background:#fcfdff;border:1px solid #dce4ef;border-radius:11px;padding:11px 12px;outline:none;color:#1c2b49}
+.field textarea{min-height:90px;resize:vertical}.field input:focus,.field textarea:focus{border-color:#436dcb}
+.langs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.languages-label{font-size:12px;color:#657492}
+.lang-field{display:grid;gap:7px}.lang-field>span{font-size:12px;font-weight:650;color:#71829e}
+.listHead{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.item{border:1px solid #e7ecf5;border-radius:14px;padding:16px 18px;margin:10px 0;background:#fff}.item>summary{cursor:pointer;font-weight:750}
+.item .fields{padding-top:18px}.item .actions{display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-end;margin-top:18px}
+.imgprev{display:block;max-width:150px;max-height:140px;object-fit:contain;border-radius:10px;margin-bottom:10px;background:#f5f7fc}
+.uploadRow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.uploadRow input[type=file]{max-width:270px}
+.empty{padding:25px;border:1px dashed #ccd6e6;border-radius:14px;text-align:center;color:#6a7991;font-size:14px}
+.footerBar{position:sticky;bottom:10px;z-index:10;background:#fff;border:1px solid #e1e8f3;border-radius:14px;box-shadow:0 15px 40px #1b2c501b;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+@media(max-width:800px){.layout{display:block}aside{border-right:0;border-bottom:1px solid #e4eaf3;gap:12px;padding:14px}nav{display:flex;overflow-x:auto}nav button{white-space:nowrap;flex-shrink:0}.foot{display:none}main{padding:18px 12px}.langs{grid-template-columns:1fr}}
+</style></head><body>
+<div class="layout"><aside><div class="brand"><img src="../assets/logo-mark.png" alt=""><div><strong>JoianDent</strong><small>Panou de control</small></div></div>
+<nav id="nav"><button data-section="general" class="selected">01 · Pagina principală</button><button data-section="services">02 · Servicii</button><button data-section="team">03 · Echipa</button><button data-section="cases">04 · Înainte / După</button><button data-section="reviews">05 · Recenzii</button></nav>
+<div class="foot"><div id="profile">Acces protejat</div><p><a href="../">← Înapoi la site</a></p></div></aside>
+<main><header><div><h1>Administrare JoianDent</h1><div class="muted">Schimbările se salvează în GitHub și sunt publicate prin hostingul conectat.</div></div><div class="topbuttons"><span class="pill" id="role">Verificare acces</span><button id="refresh" class="btn">Reîncarcă</button></div></header>
+<div id="notice" class="status">Se verifică accesul securizat. Acest panou nu poate salva fără Cloudflare Access configurat.</div>
+<div class="sheet" id="content"><div class="empty">Autentificarea și încărcarea datelor sunt necesare înainte de editare.</div></div>
+<div class="footerBar"><span class="muted" id="current">Nicio secțiune încărcată.</span><button class="btn primary" id="save" disabled>Salvează modificările</button></div>
+</main></div><script>
+"use strict";
+const defs={
+general:{title:"Informații și prima pagină",fields:[
+["heroTitle","Titlu principal","locale"],["heroImage","Fotografia principală","image"],
+["introTitle","Titlu introductiv","locale"],["introDescription","Text introductiv","localeText"],
+["aboutTitle","Titlu despre clinică","locale"],["aboutDescription","Descriere clinică","localeText"],
+["phone","Telefon afișat","text"],["phoneLink","Telefon internațional","text"],["email","Email","email"],
+["address","Adresa clinicii","text"],["hours","Orar","locale"],["break","Pauză de masă","locale"]]},
+services:{title:"Servicii stomatologice",fields:[["id","Identificator unic","text"],["icon","Simbol","text"],["title","Denumire","locale"],["description","Descriere","localeText"]]},
+team:{title:"Echipa",fields:[["id","Identificator unic","text"],["name","Nume","text"],["type","Tip profil","choice",["doctor","team"]],["role","Funcție","locale"],["image","Fotografie","image"],["details","Detalii grup","textarea"]]},
+cases:{title:"Cazuri Înainte / După",fields:[["id","Identificator unic","text"],["category","ID serviciu","text"],["title","Titlu","locale"],["description","Descriere","localeText"],["before","Fotografie înainte","image"],["after","Fotografie după","image"],["consent","Acord pentru publicare","bool"],["published","Publică pe site","bool"]]},
+reviews:{title:"Recenzii aprobate",fields:[["id","Identificator unic","text"],["author","Nume afișat","text"],["rating","Stele (1–5)","number"],["text","Recenzie","textarea"],["published","Publică pe site","bool"]]}
+};
+const $=s=>document.querySelector(s),sectionBtns=[...document.querySelectorAll("[data-section]")];
+let currentSection="general",data=null,sha=null,authenticated=false,saving=false,dirty=false;
+function escapeHtml(v){return String(v??"").replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));}
+function setNotice(t,kind=""){const e=$("#notice");e.textContent=t;e.className="status "+kind;}
+function changeState(){dirty=true;$("#save").disabled=!authenticated||saving;$("#current").textContent="Modificări nesalvate · "+defs[currentSection].title;}
+async function api(query,opt={}){
+ const res=await fetch("/api/admin"+query,{cache:"no-store",credentials:"same-origin",...opt});
+ let json={};try{json=await res.json();}catch{}
+ if(!res.ok||!json.ok)throw new Error(json.error||"Eroare de comunicare ("+res.status+")");
+ return json;
+}
+function choose(section){if(dirty&&!confirm("Ai modificări nesalvate. Vrei să treci la altă secțiune?"))return;currentSection=section;sectionBtns.forEach(b=>b.classList.toggle("selected",b.dataset.section===section));load();}
+async function checkAuth(){
+ try{const me=await api("?action=session");authenticated=true;$("#role").textContent=me.role==="owner"?"Administrator principal":"Editor";$("#profile").textContent=me.email+" · "+me.role;setNotice("Conectat în siguranță la ramura GitHub: "+me.branch+". Modificările sunt versionate și pot fi restaurate.","good");await load();}
+ catch(e){authenticated=false;$("#save").disabled=true;setNotice(e.message+" Deschide panoul doar după configurarea conturilor autorizate și a secretelelor Cloudflare.","bad");}
+}
+function blank(){
+ if(currentSection==="general")return {};
+ const obj={id:"nou-"+Math.random().toString(36).slice(2,9)};
+ if(currentSection==="team")obj.type="doctor";
+ if(currentSection==="reviews")obj.rating=5;
+ if(currentSection==="cases"){obj.published=false;obj.consent=false}
+ return obj;
+}
+async function load(){
+ if(!authenticated)return;
+ $("#save").disabled=true;$("#content").innerHTML='<div class="empty">Se încarcă datele...</div>';
+ try{
+ const r=await api("?resource="+currentSection);data=r.data;sha=r.sha;dirty=false;render();
+ $("#current").textContent=defs[currentSection].title+" · "+(Array.isArray(data)?data.length+" elemente":"Informații generale");
+ }catch(e){setNotice("Nu s-a putut încărca: "+e.message,"bad");$("#content").innerHTML='<div class="empty">Datele nu au putut fi citite.</div>';}
+}
+function formatValue(type,value){
+ if(type==="bool")return !!value;
+ if(type==="number")return Number(value??5);
+ return String(value??"");
+}
+function fieldHtml(def,value,index){
+ const [key,label,type,choices]=def;
+ const path=(index===null?"general":index)+"::"+key;
+ let input="";
+ if(type==="locale"||type==="localeText"){
+  input='<div class="langs">'+["ro","ru","en"].map((lang)=>'<label class="lang-field"><span>'+({ro:"Română",ru:"Rusă",en:"Engleză"}[lang])+'</span>'+
+  (type==="localeText"?'<textarea data-key="'+escapeHtml(key)+'" data-index="'+index+'" data-lang="'+lang+'">'+escapeHtml(value?.[lang])+'</textarea>':'<input data-key="'+escapeHtml(key)+'" data-index="'+index+'" data-lang="'+lang+'" value="'+escapeHtml(value?.[lang])+'">')+"</label>").join("")+"</div>";
+ }else if(type==="textarea")input='<textarea data-key="'+key+'" data-index="'+index+'">'+escapeHtml(value)+'</textarea>';
+ else if(type==="bool")input='<label class="uploadRow"><input type="checkbox" data-key="'+key+'" data-index="'+index+'" '+(value?"checked":"")+'> Da</label>';
+ else if(type==="choice")input='<select data-key="'+key+'" data-index="'+index+'">'+choices.map(c=>'<option value="'+c+'" '+(c===value?"selected":"")+'>'+({doctor:"Medic",team:"Grup / asistente"}[c]||c)+'</option>').join("")+'</select>';
+ else if(type==="image"){
+  const path=String(value||"");
+  input='<div class="uploadRow">'+(path?'<img class="imgprev" src="../'+escapeHtml(path.replace(/^\//,""))+'" alt="Fotografie existentă">':"")+
+  '<input data-key="'+key+'" data-index="'+index+'" value="'+escapeHtml(path)+'" placeholder="assets/..." aria-label="Cale imagine">'+
+  '<input type="file" accept="image/jpeg,image/png,image/webp" data-upload="'+key+'" data-index="'+index+'"></div><p class="muted">JPG / PNG / WebP, maximum 5 MB. Publică doar fotografii pentru care ai dreptul de utilizare.</p>';
+ }else{
+ const iType=type==="email"?"email":type==="number"?"number":"text";
+ input='<input type="'+iType+'" '+(iType==="number"?'min="1" max="5"':'')+' data-key="'+key+'" data-index="'+index+'" value="'+escapeHtml(value)+'">';
+ }
+ return '<div class="field"><label>'+escapeHtml(label)+'</label>'+input+'</div>';
+}
+function render(){
+ const conf=defs[currentSection];
+ let html='<div class="listHead"><h2>'+conf.title+'</h2>';
+ if(Array.isArray(data))html+='<button class="btn" id="add">+ Adaugă</button>';
+ html+='</div>';
+ if(Array.isArray(data)){
+ html+=data.length?data.map((item,i)=>'<details class="item" '+(data.length===1?'open':'')+'><summary>'+escapeHtml(item.name||item.author||item.title?.ro||item.id||"Element nou")+'</summary><div class="fields">'+conf.fields.map(f=>fieldHtml(f,item[f[0]],i)).join('')+
+ '<div class="actions"><button class="btn" data-up="'+i+'" '+(i===0?'disabled':'')+'>↑ Mută sus</button><button class="btn" data-down="'+i+'" '+(i===data.length-1?'disabled':'')+'>↓ Mută jos</button><button class="btn danger" data-remove="'+i+'">Elimină</button></div></div></details>').join(''):'<div class="empty">Nu există înregistrări. Adaugă primul element.</div>';
+ }else html+=conf.fields.map(f=>fieldHtml(f,data[f[0]],null)).join('');
+ $("#content").innerHTML=html;$("#save").disabled=!authenticated;
+}
+function syncChange(el){
+ const key=el.dataset.key,index=el.dataset.index,lang=el.dataset.lang;
+ const target=index==="null"?data:data[Number(index)];
+ if(!target)return;
+ const type=defs[currentSection].fields.find(x=>x[0]===key)?.[2];
+ const value=type==="bool"?el.checked:type==="number"?Number(el.value):el.value;
+ if(lang){if(!target[key]||typeof target[key]!=="object")target[key]={};target[key][lang]=value}
+ else target[key]=value;
+ changeState();
+}
+$("#content").addEventListener("input",e=>{if(e.target.dataset.key!==undefined)syncChange(e.target)});
+$("#content").addEventListener("change",async e=>{
+ if(e.target.dataset.key!==undefined)syncChange(e.target);
+ if(e.target.dataset.upload!==undefined){
+ const file=e.target.files?.[0];if(!file)return;
+ const allowed=["image/png","image/jpeg","image/webp"];
+ if(!allowed.includes(file.type)||file.size>5*1024*1024){setNotice("Imagine invalidă sau mai mare de 5 MB.","bad");return;}
+ const key=e.target.dataset.upload,index=e.target.dataset.index;
+ try{
+  setNotice("Se încarcă fotografia în GitHub...");const bytes=new Uint8Array(await file.arrayBuffer());
+  let b64="";for(let i=0;i<bytes.length;i+=8192)b64+=String.fromCharCode(...bytes.subarray(i,i+8192));
+  const result=await api("?action=media",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({mime:file.type,base64:btoa(b64)})});
+  const target=index==="null"?data:data[Number(index)];target[key]=result.path;
+  changeState();render();setNotice("Fotografia a fost încărcată. Apasă Salvează modificările pentru a o afișa în secțiunea aleasă.","good");
+ }catch(err){setNotice("Nu s-a putut încărca imaginea: "+err.message,"bad");}
+ }
+});
+$("#content").addEventListener("click",e=>{
+ if(e.target.id==="add"){data.push(blank());changeState();render();const els=document.querySelectorAll("details.item");els[els.length-1]?.setAttribute("open","");}
+ let target=e.target.closest("[data-remove],[data-up],[data-down]");
+ if(!target)return;
+ let idx=Number(target.dataset.remove??target.dataset.up??target.dataset.down);
+ if(target.hasAttribute("data-remove")){
+  if(!confirm("Elimini elementul? Modificarea va fi aplicată după Salvare."))return;
+  data.splice(idx,1);
+ }else{
+  let next=target.hasAttribute("data-up")?idx-1:idx+1;
+  [data[idx],data[next]]=[data[next],data[idx]];
+ }
+ changeState();render();
+});
+sectionBtns.forEach(b=>b.addEventListener("click",()=>choose(b.dataset.section)));
+$("#refresh").addEventListener("click",()=>{if(!dirty||confirm("Renunți la modificările nesalvate?"))load()});
+$("#save").addEventListener("click",async()=>{
+ if(!authenticated||saving)return;
+ saving=true;$("#save").disabled=true;
+ try{
+  if(currentSection==="cases"&&data.some(c=>c.published&&!c.consent))throw new Error("Pentru fiecare caz publicat trebuie bifat acordul.");
+  if(currentSection==="reviews"&&data.some(r=>r.published&&(!r.author||!r.text)))throw new Error("Recenziile publicate trebuie să conțină nume și text.");
+  const r=await api("?resource="+currentSection,{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify({value:data,sha})});
+  sha=r.sha;dirty=false;setNotice("Salvat în siguranță. Conținutul se va actualiza după publicarea automată a noii versiuni.","good");
+  $("#current").textContent=defs[currentSection].title+" · Toate modificările sunt salvate.";
+ }catch(e){setNotice("Salvarea a eșuat: "+e.message,"bad");}
+ saving=false;$("#save").disabled=!authenticated;
+});
+window.addEventListener("beforeunload",e=>{if(dirty){e.preventDefault();e.returnValue=""}});
+checkAuth();
+</script></body></html>
