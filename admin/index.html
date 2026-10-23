@@ -2,40 +2,149 @@
 <html lang="ro"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow"><title>JoianDent · Administrare</title>
 <style>
-:root{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:#152342;background:#f5f7fc;--blue:#18378e}*{box-sizing:border-box}
-body{margin:0}button,input,textarea,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}
-a{color:var(--blue)}.layout{display:grid;grid-template-columns:264px minmax(0,1fr);min-height:100vh}
-aside{background:white;border-right:1px solid #e4eaf3;padding:25px 14px;display:flex;flex-direction:column;gap:24px}
-.brand{display:flex;align-items:center;gap:12px;padding:0 12px}.brand img{width:38px}.brand strong{font-size:20px}.brand small{font-size:11px;color:#8290a7;display:block}
-nav{display:grid;gap:6px}nav button{border:0;background:transparent;color:#57657b;text-align:left;border-radius:12px;padding:13px 15px;font-weight:600;font-size:14px}
-nav button.selected{background:#edf2ff;color:#173a91}nav button:hover{background:#f1f4fb}
-aside .foot{margin-top:auto;border-top:1px solid #e6ebf2;padding:20px 12px;font-size:12px;overflow-wrap:anywhere;color:#65738b}
-main{width:min(1200px,100%);margin:0 auto;padding:28px clamp(16px,4vw,52px)}header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:28px;flex-wrap:wrap}
-h1{font-size:clamp(24px,3vw,32px);letter-spacing:-.045em;margin:0}h2{font-size:18px;margin:0 0 18px}
-.muted{font-size:14px;color:#77839a;line-height:1.6}.pill{background:#ebf2ff;color:#2955a2;border-radius:100px;padding:8px 12px;font-size:12px;font-weight:700}
-.btn{border:1px solid #d9e2f1;background:#fff;color:#23375a;border-radius:10px;padding:11px 16px;font-weight:700}
-.primary{border-color:var(--blue);background:var(--blue);color:white}.danger{color:#ac3140;border-color:#f4d9de}
-.topbuttons{display:flex;gap:8px;align-items:center}.sheet{border:1px solid #e1e8f3;box-shadow:0 6px 26px #28467709;border-radius:19px;background:#fff;padding:clamp(18px,3vw,28px);margin:18px 0}
-.status{border-radius:12px;background:#fff4e8;color:#874d0e;padding:16px 18px;margin-bottom:20px;line-height:1.55;font-size:14px}
-.status.good{background:#eaf7f0;color:#24684d}.status.bad{background:#fff0f2;color:#a33043}
-.field{display:grid;gap:7px;margin:0 0 18px}.field>label{font-weight:700;font-size:13px}.field input,.field textarea,.field select{width:100%;background:#fcfdff;border:1px solid #dce4ef;border-radius:11px;padding:11px 12px;outline:none;color:#1c2b49}
-.field textarea{min-height:90px;resize:vertical}.field input:focus,.field textarea:focus{border-color:#436dcb}
-.langs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.languages-label{font-size:12px;color:#657492}
-.lang-field{display:grid;gap:7px}.lang-field>span{font-size:12px;font-weight:650;color:#71829e}
-.listHead{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.item{border:1px solid #e7ecf5;border-radius:14px;padding:16px 18px;margin:10px 0;background:#fff}.item>summary{cursor:pointer;font-weight:750}
-.item .fields{padding-top:18px}.item .actions{display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-end;margin-top:18px}
-.imgprev{display:block;max-width:150px;max-height:140px;object-fit:contain;border-radius:10px;margin-bottom:10px;background:#f5f7fc}
-.uploadRow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.uploadRow input[type=file]{max-width:270px}
-.empty{padding:25px;border:1px dashed #ccd6e6;border-radius:14px;text-align:center;color:#6a7991;font-size:14px}
-.footerBar{position:sticky;bottom:10px;z-index:10;background:#fff;border:1px solid #e1e8f3;border-radius:14px;box-shadow:0 15px 40px #1b2c501b;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
-@media(max-width:800px){.layout{display:block}aside{border-right:0;border-bottom:1px solid #e4eaf3;gap:12px;padding:14px}nav{display:flex;overflow-x:auto}nav button{white-space:nowrap;flex-shrink:0}.foot{display:none}main{padding:18px 12px}.langs{grid-template-columns:1fr}}
+:root{
+  font-family:Inter,"Segoe UI",system-ui,-apple-system,sans-serif;
+  color:#1d2939;background:#f6f8fc;
+  --ink:#172233;--blue:#213f90;--stroke:#e5eaf2;--muted:#798399;--shadow:0 12px 38px rgba(26,42,75,.055)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#f6f8fc;min-height:100vh}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.47;cursor:not-allowed}
+a{color:inherit;text-decoration:none}
+.layout{display:grid;grid-template-columns:265px minmax(0,1fr);min-height:100vh}
+aside{
+  background:#141c2b;color:#fff;
+  border-right:1px solid #253249;
+  display:flex;flex-direction:column;gap:26px;
+  padding:30px 16px 22px;min-height:100vh;
+  position:sticky;top:0;height:100vh
+}
+.brand{display:flex;align-items:center;gap:13px;padding:3px 11px 22px;border-bottom:1px solid #2d384c}
+.brand img{width:39px;height:39px;object-fit:contain;background:#f8fafc;border-radius:10px;padding:4px}
+.brand strong{font-size:20px;font-weight:800;letter-spacing:-.055em;color:#fff}
+.brand small{font-size:10px;color:#8593ad;display:block;margin-top:2px;letter-spacing:.15em;font-weight:750;text-transform:uppercase}
+.nav-heading{color:#73829b;font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;margin:0 0 10px 13px}
+nav{display:grid;gap:7px}
+nav button{
+  display:flex;align-items:center;gap:12px;
+  padding:13px 14px;border:1px solid transparent;border-radius:11px;
+  font-size:13.5px;font-weight:650;
+  color:#aebacc;background:transparent;text-align:left;
+  transition:background .2s,border-color .2s,color .2s;min-height:46px
+}
+nav button:hover{background:#243044;color:#fff}
+nav button.selected{background:#293c68;color:#fff;border-color:#3f5992;box-shadow:inset 3px 0 0 #88adff}
+.navicon{
+  flex:none;display:inline-grid;place-items:center;
+  width:27px;height:27px;border-radius:7px;
+  border:1px solid #46536a;color:#d9e4ff;font-size:11px;font-weight:850
+}
+nav button.selected .navicon{background:#4772c1;color:white;border-color:transparent}
+aside .foot{margin-top:auto;background:#1c293c;border-radius:12px;padding:15px 16px;font-size:12px;color:#bac5d6;overflow-wrap:anywhere}
+aside .foot a{color:#a3c4ff;font-weight:700}
+aside .foot p{margin:12px 0 0}
+main{width:min(1390px,100%);margin:0 auto;padding:35px clamp(20px,3.5vw,56px) 75px}
+header{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:24px;flex-wrap:wrap}
+.heading-label{display:flex;align-items:center;gap:8px;color:#5576b1;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin-bottom:9px}
+.heading-label:before{content:"";width:7px;height:7px;border-radius:50%;background:#4577d8}
+h1{font-size:clamp(26px,2.7vw,36px);letter-spacing:-.055em;font-weight:780;margin:0 0 7px;color:#17253b}
+h2{font-size:19px;letter-spacing:-.03em;margin:0}
+.muted{font-size:13px;color:var(--muted);line-height:1.6}
+.pill{font-size:12px;color:#2457a4;border-radius:99px;padding:9px 13px;font-weight:800;background:#ebf2ff;border:1px solid #dbe6ff}
+.topbuttons{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.btn{border:1px solid #dce3ee;background:#fff;color:#30405b;border-radius:10px;padding:11px 17px;font-weight:750;font-size:13px;min-height:42px;transition:background .2s}
+.btn:hover:not(:disabled){background:#f1f5fd}
+.primary{border-color:#20428f;background:#20428f;color:#fff;box-shadow:0 5px 14px #18388920}
+.primary:hover:not(:disabled){background:#163171}
+.danger{color:#ad3646;border-color:#f0d9dd;background:#fff}
+.dashboard-hero{
+  background:linear-gradient(112deg,#172b54 0%,#223f83 66%,#375a9b 100%);
+  border-radius:19px;padding:26px 30px;color:white;
+  display:flex;justify-content:space-between;align-items:center;gap:20px;
+  box-shadow:0 15px 34px #20387519;overflow:hidden;position:relative
+}
+.dashboard-hero:after{content:"";position:absolute;right:-65px;top:-120px;width:290px;height:290px;border:1px solid #ffffff24;border-radius:50%;pointer-events:none}
+.dashboard-hero h2{font-size:23px;font-weight:780;letter-spacing:-.04em;margin-bottom:6px;color:white}
+.dashboard-hero p{margin:0;color:#d4dff6;font-size:13px;line-height:1.65;max-width:570px}
+.hero-kicker{font-size:10px;font-weight:800;color:#b6cfff;letter-spacing:.16em;text-transform:uppercase;margin-bottom:9px}
+.hero-button{border:1px solid #b6c6ef69;background:#ffffff16;color:#fff;border-radius:11px;padding:13px 16px;font-weight:750;font-size:13px;white-space:nowrap;z-index:1}
+.hero-button:hover{background:#ffffff2b}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:19px 0 25px}
+.metric{
+  padding:21px 22px;background:#fff;border:1px solid var(--stroke);
+  box-shadow:var(--shadow);border-radius:15px;position:relative;
+  display:flex;flex-direction:column;gap:8px;min-height:123px
+}
+.metric .number{font-size:32px;font-weight:800;color:#182947;letter-spacing:-.06em;line-height:1}
+.metric .metric-label{font-size:12px;color:#7a8598;font-weight:650}
+.metric .metric-icon{position:absolute;right:18px;top:18px;border-radius:10px;width:34px;height:34px;background:#edf2fc;color:#2b5daa;display:grid;place-items:center;font-size:14px;font-weight:800}
+.metric .metric-note{font-size:10px;color:#96a2b4}
+.section-row{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:8px 1px 0;flex-wrap:wrap}
+.section-row .section-eyebrow{letter-spacing:.12em;text-transform:uppercase;color:#6780a9;font-weight:800;font-size:10px;margin-bottom:5px}
+.sheet{border:1px solid var(--stroke);box-shadow:var(--shadow);border-radius:16px;background:#fff;padding:clamp(20px,2.5vw,32px);margin:15px 0 22px}
+.status{border-radius:12px;background:#fff7ea;border:1px solid #f6ead3;color:#87591f;padding:13px 16px;margin:19px 0 12px;line-height:1.55;font-size:12.5px}
+.status.good{background:#edf9f1;border-color:#d2eed9;color:#2a7652}
+.status.bad{background:#fff0f3;border-color:#f5d6df;color:#a33043}
+.field{display:grid;gap:8px;margin:0 0 20px}
+.field>label{font-weight:750;font-size:12px;color:#35435a}
+.field input,.field textarea,.field select{width:100%;background:#fafcff;border:1px solid #e0e7f1;border-radius:10px;padding:12px 13px;outline:none;color:#1c2b49;font-size:13px}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:#668bd3;box-shadow:0 0 0 3px #4468be14}
+.field textarea{min-height:95px;resize:vertical}
+.langs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.lang-field{display:grid;gap:7px}.lang-field>span{font-size:11px;font-weight:700;color:#6c7e9b}
+.listHead{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid #ecf0f6;margin-bottom:18px}
+.item{border:1px solid #e4eaf3;border-radius:12px;padding:17px 19px;margin:12px 0;background:#fff}
+.item>summary{cursor:pointer;font-weight:750;color:#263951;font-size:13.5px}
+.item[open]{box-shadow:0 8px 18px #2745750c;background:#fcfdff}
+.item .fields{padding-top:19px}
+.item .actions{display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-end;margin-top:18px}
+.imgprev{display:block;max-width:160px;max-height:160px;object-fit:contain;border-radius:11px;margin-bottom:10px;background:#f5f7fc}
+.uploadRow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.uploadRow input[type=file]{max-width:270px}
+.empty{padding:35px;border:1px dashed #ccd6e6;border-radius:12px;text-align:center;color:#6a7991;font-size:13px;background:#fafbfe}
+.footerBar{position:sticky;bottom:12px;z-index:10;background:#fff;border:1px solid #e3eaf4;border-radius:13px;box-shadow:0 15px 35px #1c33541c;padding:13px 17px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+@media(max-width:1100px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:850px){
+ .layout{display:block}aside{position:static;height:auto;min-height:0;border:0;border-bottom:1px solid #202f46;gap:14px;padding:12px 16px}
+ .brand{border-bottom:0;padding:4px 0}.nav-heading{display:none}nav{display:flex;overflow:auto;gap:6px;padding:0 0 4px}
+ nav button{white-space:nowrap;flex-shrink:0;padding:10px 12px;min-height:40px}.navicon{width:22px;height:22px}
+ aside .foot{display:none}main{padding:23px 17px 62px}.langs{grid-template-columns:1fr}
+ .dashboard-hero{padding:23px;flex-wrap:wrap}.dashboard-hero h2{font-size:20px}
+}
+@media(max-width:480px){.metrics{gap:10px}.metric{padding:16px;min-height:115px}.metric .number{font-size:27px}.metric .metric-icon{right:12px;top:12px;width:27px;height:27px}.sheet{padding:18px}.hero-button{width:100%}.footerBar{bottom:0;border-radius:10px 10px 0 0}}
 </style></head><body>
-<div class="layout"><aside><div class="brand"><img src="../assets/logo-mark.png" alt=""><div><strong>JoianDent</strong><small>Panou de control</small></div></div>
-<nav id="nav"><button data-section="general" class="selected">01 · Pagina principală</button><button data-section="services">02 · Servicii</button><button data-section="team">03 · Echipa</button><button data-section="cases">04 · Înainte / După</button><button data-section="reviews">05 · Recenzii</button></nav>
-<div class="foot"><div id="profile">Acces protejat</div><p><a href="../">← Înapoi la site</a></p></div></aside>
-<main><header><div><h1>Administrare JoianDent</h1><div class="muted">Schimbările se salvează în GitHub și sunt publicate prin hostingul conectat.</div></div><div class="topbuttons"><span class="pill" id="role">Verificare acces</span><button id="refresh" class="btn">Reîncarcă</button></div></header>
-<div id="notice" class="status">Se verifică accesul securizat. Acest panou nu poate salva fără Cloudflare Access configurat.</div>
+<div class="layout"><aside>
+<div class="brand"><img src="../assets/logo-mark.png" alt="JoianDent"><div><strong>JoianDent</strong><small>Administration</small></div></div>
+<div><p class="nav-heading">GESTIONARE SITE</p>
+<nav id="nav">
+<button data-section="general" class="selected"><span class="navicon">01</span>Pagina principală</button>
+<button data-section="services"><span class="navicon">02</span>Servicii</button>
+<button data-section="team"><span class="navicon">03</span>Echipa clinicii</button>
+<button data-section="cases"><span class="navicon">04</span>Înainte / După</button>
+<button data-section="reviews"><span class="navicon">05</span>Recenzii</button>
+</nav></div>
+<div class="foot"><strong>Cont conectat</strong><div id="profile" style="margin-top:8px">Acces protejat</div><p><a href="../">← Vezi site-ul JoianDent</a></p></div></aside>
+<main>
+<header><div><div class="heading-label">JOIANDENT / CONTROL PANEL</div><h1>Panou de administrare</h1>
+<div class="muted">Gestionează conținutul clinicii dintr-un singur loc.</div></div>
+<div class="topbuttons"><span class="pill" id="role">Verificare acces</span><button id="refresh" class="btn">Reîncarcă</button></div></header>
+<section class="dashboard-hero">
+<div><div class="hero-kicker">SPAȚIUL TĂU DE LUCRU</div><h2>Tot ce ai nevoie. Simplu și organizat.</h2>
+<p>Actualizează serviciile, echipa, fotografiile și recenziile. Modificările vor fi salvate și versionate în GitHub.</p></div>
+<button type="button" class="hero-button" id="goServices">Gestionează serviciile →</button>
+</section>
+<section class="metrics" aria-label="Prezentare generală">
+<div class="metric"><div class="metric-icon">S</div><span class="metric-label">Servicii</span><strong class="number" id="metric-services">—</strong><span class="metric-note">Categorii disponibile</span></div>
+<div class="metric"><div class="metric-icon">E</div><span class="metric-label">Echipa clinicii</span><strong class="number" id="metric-team">—</strong><span class="metric-note">Persoane și grupuri</span></div>
+<div class="metric"><div class="metric-icon">C</div><span class="metric-label">Cazuri publicate</span><strong class="number" id="metric-cases">—</strong><span class="metric-note">Înainte și După</span></div>
+<div class="metric"><div class="metric-icon">R</div><span class="metric-label">Recenzii aprobate</span><strong class="number" id="metric-reviews">—</strong><span class="metric-note">Afișate pe site</span></div>
+</section>
+<div class="section-row"><div><div class="section-eyebrow">EDITOR DE CONȚINUT</div><h2 id="activeSection">Pagina principală</h2></div>
+<span class="muted">Schimbările sunt păstrate în istoricul GitHub</span></div>
+<div id="notice" class="status">Se verifică accesul securizat. Salvarea necesită Cloudflare Access configurat.</div>
 <div class="sheet" id="content"><div class="empty">Autentificarea și încărcarea datelor sunt necesare înainte de editare.</div></div>
 <div class="footerBar"><span class="muted" id="current">Nicio secțiune încărcată.</span><button class="btn primary" id="save" disabled>Salvează modificările</button></div>
 </main></div><script>
@@ -63,9 +172,22 @@ async function api(query,opt={}){
  if(!res.ok||!json.ok)throw new Error(json.error||"Eroare de comunicare ("+res.status+")");
  return json;
 }
-function choose(section){if(dirty&&!confirm("Ai modificări nesalvate. Vrei să treci la altă secțiune?"))return;currentSection=section;sectionBtns.forEach(b=>b.classList.toggle("selected",b.dataset.section===section));load();}
+
+async function refreshMetrics(){
+ const keys=["services","team","cases","reviews"];
+ await Promise.all(keys.map(async key=>{
+  try{
+   const result=await api("?resource="+key);
+   const items=Array.isArray(result.data)?result.data:[];
+   const n=(key==="cases"||key==="reviews")?items.filter(x=>x.published).length:items.length;
+   const target=$("#metric-"+key);if(target)target.textContent=String(n).padStart(2,"0");
+  }catch{const el=$("#metric-"+key);if(el)el.textContent="—";}
+ }));
+}
+$("#goServices").addEventListener("click",()=>choose("services"));
+function choose(section){if(dirty&&!confirm("Ai modificări nesalvate. Vrei să treci la altă secțiune?"))return;currentSection=section;$("#activeSection").textContent=defs[section].title;sectionBtns.forEach(b=>b.classList.toggle("selected",b.dataset.section===section));load();}
 async function checkAuth(){
- try{const me=await api("?action=session");authenticated=true;$("#role").textContent=me.role==="owner"?"Administrator principal":"Editor";$("#profile").textContent=me.email+" · "+me.role;setNotice("Conectat în siguranță la ramura GitHub: "+me.branch+". Modificările sunt versionate și pot fi restaurate.","good");await load();}
+ try{const me=await api("?action=session");authenticated=true;$("#role").textContent=me.role==="owner"?"Administrator principal":"Editor";$("#profile").textContent=me.email+" · "+me.role;setNotice("Conectat în siguranță la ramura GitHub: "+me.branch+". Modificările sunt versionate și pot fi restaurate.","good");await load();refreshMetrics();}
  catch(e){authenticated=false;$("#save").disabled=true;setNotice(e.message+" Deschide panoul doar după configurarea conturilor autorizate și a secretelelor Cloudflare.","bad");}
 }
 function blank(){
@@ -171,7 +293,7 @@ $("#save").addEventListener("click",async()=>{
   if(currentSection==="cases"&&data.some(c=>c.published&&!c.consent))throw new Error("Pentru fiecare caz publicat trebuie bifat acordul.");
   if(currentSection==="reviews"&&data.some(r=>r.published&&(!r.author||!r.text)))throw new Error("Recenziile publicate trebuie să conțină nume și text.");
   const r=await api("?resource="+currentSection,{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify({value:data,sha})});
-  sha=r.sha;dirty=false;setNotice("Salvat în siguranță. Conținutul se va actualiza după publicarea automată a noii versiuni.","good");
+  sha=r.sha;dirty=false;refreshMetrics();setNotice("Salvat în siguranță. Conținutul se va actualiza după publicarea automată a noii versiuni.","good");
   $("#current").textContent=defs[currentSection].title+" · Toate modificările sunt salvate.";
  }catch(e){setNotice("Salvarea a eșuat: "+e.message,"bad");}
  saving=false;$("#save").disabled=!authenticated;
