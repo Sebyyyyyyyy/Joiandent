@@ -56,6 +56,20 @@
     }
   },
   {
+    "id": "parodontologie",
+    "icon": "✧",
+    "title": {
+      "ro": "Parodontologie",
+      "ru": "Пародонтология",
+      "en": "Periodontology"
+    },
+    "description": {
+      "ro": "Prevenirea, diagnosticarea și tratamentul afecțiunilor gingiilor și ale țesuturilor care susțin dinții.",
+      "ru": "Профилактика, диагностика и лечение заболеваний дёсен и тканей, поддерживающих зубы.",
+      "en": "Prevention, diagnosis and treatment of gum conditions and tissues supporting the teeth."
+    }
+  },
+  {
     "id": "terapie",
     "icon": "＋",
     "title": {
