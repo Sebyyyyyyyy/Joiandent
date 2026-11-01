@@ -84,3 +84,10 @@ Este o versiune **de test**, nu activa niciun domeniu public înaintea configur�
 **Notă:** datele din \`content/*.json\` și imaginile \`assets/\` sunt vizibile în repository-ul public. Publică numai recenzii aprobate și cazuri cu acord documentat. Nu stoca fișe medicale, date sensibile sau cereri private în GitHub.
 
 **Limitări:** loginul Cloudflare necesită configurarea ta a celor două conturi/permisiuni și a secretelor. Fără ele API-ul răspunde cu indisponibil, iar panoul nu poate salva. Pages CMS extern rămâne disponibil ca alternativă pentru editarea directă din GitHub.
+
+
+## Vizibilitatea secțiunii Înainte / După
+
+Secțiunea este ascunsă implicit în V2.5, inclusiv legătura sa din meniul site-ului. Controlul se află în panoul propriu `/admin/` → `Înainte / După` → `Afișează secțiunea` → `Salvează afișarea`. Se poate modifica și în Pages CMS, la `Informații și prima pagină` → `Afișează secțiunea Înainte / După`.
+
+Chiar dacă administratorul o activează, secțiunea rămâne ascunsă până când există cel puțin un caz clinic complet, cu imagini înainte/după, marcat ca publicat și cu acordul pacientului. Editorii pot pregăti cazurile fără publicare; activarea nu dezvăluie automat cazuri incomplete. Ambele operațiuni din panoul propriu necesită autentificarea Cloudflare Access și configurarea secretelor GitHub.
