@@ -71,11 +71,19 @@ content:
           - { name: ro, type: string, label: Română }
           - { name: ru, type: string, label: Rusă }
           - { name: en, type: string, label: Engleză }
-      - name: showBeforeAfter
-        label: Afișează secțiunea Înainte / După
-        type: boolean
-        default: false
-        description: Afișează secțiunea doar dacă există cazuri aprobate, cu două fotografii și acordul pacientului
+      - name: sectionsVisibility
+        label: Vizibilitatea secțiunilor pe site
+        type: object
+        fields:
+          - { name: home, label: "Pagina principală — afișează", type: boolean, default: true }
+          - { name: intro, label: "Introducere — afișează", type: boolean, default: true }
+          - { name: services, label: "Servicii — afișează", type: boolean, default: true }
+          - { name: about, label: "Despre clinică — afișează", type: boolean, default: true }
+          - { name: team, label: "Echipa — afișează", type: boolean, default: true }
+          - { name: beforeAfter, label: "Înainte / După — afișează", type: boolean, default: false }
+          - { name: reviews, label: "Recenzii — afișează", type: boolean, default: true }
+          - { name: contact, label: "Contact și hartă — afișează", type: boolean, default: true }
+          - { name: hours, label: "Program și informații în subsol — afișează", type: boolean, default: true }
   - name: services
     label: 02 · Servicii stomatologice
     type: file
