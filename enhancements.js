@@ -94,6 +94,37 @@ function translateStatic(){
  document.documentElement.lang=language;
  qsa('[data-lang]').forEach(b=>{const current=b.dataset.lang===language;b.classList.toggle('active',current);b.setAttribute('aria-pressed',String(current));});
 }
+const visibilityDefaults={home:true,intro:true,services:true,about:true,team:true,beforeAfter:false,reviews:true,contact:true,hours:true};
+const visibilityMap={
+  home:{selector:'#acasa',href:'#acasa'},
+  intro:{selector:'.intro-section'},
+  services:{selector:'#servicii',href:'#servicii'},
+  about:{selector:'#despre'},
+  team:{selector:'#echipa'},
+  beforeAfter:{selector:'#rezultate',href:'#rezultate'},
+  reviews:{selector:'#recenzii',href:'#recenzii'},
+  contact:{selector:'#contact',href:'#contact'},
+  hours:{selector:'#program-info',href:'#program'}
+};
+function applySectionVisibility(g){
+ const prefs=g.sectionsVisibility||{};
+ const effective={...visibilityDefaults,...prefs};
+ // Compatibility with the earlier single switch.
+ if(typeof prefs.beforeAfter!=='boolean')effective.beforeAfter=g.showBeforeAfter===true;
+ const approvedCases=(cms?.cases||[]).some(c=>c.published===true&&c.consent===true&&validImage(c.before)&&validImage(c.after));
+ effective.beforeAfter=effective.beforeAfter&&approvedCases;
+ Object.entries(visibilityMap).forEach(([key,config])=>{
+   const visible=effective[key]!==false;
+   const section=qs(config.selector);
+   if(section)section.hidden=!visible;
+   if(config.href){
+     qsa('nav a[href="'+config.href+'"]').forEach(link=>{link.hidden=!visible;});
+   }
+ });
+ // Even without the hero, the brand logo always returns to a visible location.
+ const brand=qs('.site-header .brand');
+ if(brand)brand.setAttribute('href',effective.home?'#acasa':'#top');
+}
 function fillCms() {
  if(!cms)return;
  const g=cms.general||{};
@@ -118,11 +149,8 @@ function fillCms() {
  if(team){team.id='team-generated';team.innerHTML=(cms.team||[]).filter(t=>validImage(t.image)).map(t=> t.type==='team'?`<article class="assistants-card is-visible"><div class="assistants-photo"><img src="${safe(t.image)}" alt="${safe(t.name)}" loading="lazy" decoding="async"></div><div class="assistants-info"><div><span class="person-label">${safe(tx(t.role))}</span><h3>${safe(tr(t.name))}</h3></div><p>${safe(t.details||'').replace(/\n/g,'<br>')}</p></div></article>`:`<article class="person-card is-visible"><div class="person-photo"><img src="${safe(t.image)}" alt="${safe(t.name)}" loading="lazy" decoding="async"></div><div class="person-info"><span class="person-label">${safe(tx(t.role))}</span><h3>${safe(tr(t.name))}</h3></div></article>`).join('');}
  const select=qs('.appointment-form select[name="Serviciu"]');
  if(select){const chosen=select.value;select.innerHTML=`<option value="" disabled selected>${safe(tr('Alege serviciul'))}</option>`+(cms.services||[]).map(s=>`<option value="${safe(s.title?.ro||'')}">${safe(tx(s.title))}</option>`).join('')+`<option value="Consultație / Alt serviciu">${safe(ts('consultation'))}</option>`;select.value=chosen||'';}
- // Case-study visibility: hidden by default, until enabled and with approved cases.
- const casesVisible=g.showBeforeAfter===true && (cms.cases||[]).some(c=>c.published===true&&c.consent===true&&validImage(c.before)&&validImage(c.after));
- const casesSection=qs('#rezultate');
- if(casesSection)casesSection.hidden=!casesVisible;
- qsa('a[href="#rezultate"]').forEach(link=>{link.hidden=!casesVisible;});
+ // Each editable section has its own ON/OFF switch. Header/footer layout remains accessible.
+ applySectionVisibility(g);
  renderCases();renderReviews();
 }
 function renderCases(){
