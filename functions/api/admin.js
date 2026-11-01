@@ -76,8 +76,6 @@ function validate(resource,value){
       const allowedSections=["home","intro","services","about","team","beforeAfter","reviews","contact","hours"];
       if(!v || Array.isArray(v) || typeof v!=="object" || Object.keys(v).some(key=>!allowedSections.includes(key) || typeof v[key]!=="boolean"))
         throw new Error("Vizibilitatea secțiunilor trebuie să conțină doar opțiuni ON/OFF valide.");
-      if("beforeAfter" in v && "showBeforeAfter" in value && v.beforeAfter!==value.showBeforeAfter)
-        throw new Error("Setările Înainte / După trebuie să fie sincronizate.");
     }
   }else{
     if(!Array.isArray(value)||value.length>100)throw new Error("Lista trebuie să conțină maximum 100 de elemente.");
