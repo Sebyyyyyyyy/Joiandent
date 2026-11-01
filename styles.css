@@ -2071,3 +2071,8 @@ body.modal-open {
 
 /* Section visibility is controlled by the clinic in the admin panel. */
 .results-section[hidden], a[href="#rezultate"][hidden] { display: none !important; }
+
+/* V2.5 — clinic-wide section toggles */
+.site-header nav a[hidden], main section[hidden], footer .footer-info[hidden], .services-cta[hidden] {
+  display: none !important;
+}
