@@ -71,6 +71,11 @@ content:
           - { name: ro, type: string, label: Română }
           - { name: ru, type: string, label: Rusă }
           - { name: en, type: string, label: Engleză }
+      - name: showBeforeAfter
+        label: Afișează secțiunea Înainte / După
+        type: boolean
+        default: false
+        description: Afișează secțiunea doar dacă există cazuri aprobate, cu două fotografii și acordul pacientului
   - name: services
     label: 02 · Servicii stomatologice
     type: file
