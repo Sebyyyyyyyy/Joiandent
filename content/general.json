@@ -38,5 +38,6 @@
     "ru": "Перерыв: 12:30–14:30",
     "en": "Lunch break: 12:30–14:30"
   },
-  "heroImage": "assets/clinic-hero-original.jpg"
+  "heroImage": "assets/clinic-hero-original.jpg",
+  "showBeforeAfter": false
 }
