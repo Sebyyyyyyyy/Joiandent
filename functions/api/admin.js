@@ -68,7 +68,7 @@ async function github(env,path,method="GET",data){
 function validate(resource,value){
   if(resource==="general"){
     if(!value||Array.isArray(value)||typeof value!=="object")throw new Error("Format general invalid.");
-    const allowed=["heroTitle","heroImage","introTitle","introDescription","aboutTitle","aboutDescription","phone","phoneLink","email","address","hours","break"];
+    const allowed=["heroTitle","heroImage","introTitle","introDescription","aboutTitle","aboutDescription","phone","phoneLink","email","address","hours","break","showBeforeAfter"];
     if(Object.keys(value).some(k=>!allowed.includes(k)))throw new Error("Câmp nepermis.");
   }else{
     if(!Array.isArray(value)||value.length>100)throw new Error("Lista trebuie să conțină maximum 100 de elemente.");
