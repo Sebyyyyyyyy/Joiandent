@@ -91,3 +91,13 @@ Este o versiune **de test**, nu activa niciun domeniu public înaintea configur�
 Secțiunea este ascunsă implicit în V2.5, inclusiv legătura sa din meniul site-ului. Controlul se află în panoul propriu `/admin/` → `Înainte / După` → `Afișează secțiunea` → `Salvează afișarea`. Se poate modifica și în Pages CMS, la `Informații și prima pagină` → `Afișează secțiunea Înainte / După`.
 
 Chiar dacă administratorul o activează, secțiunea rămâne ascunsă până când există cel puțin un caz clinic complet, cu imagini înainte/după, marcat ca publicat și cu acordul pacientului. Editorii pot pregăti cazurile fără publicare; activarea nu dezvăluie automat cazuri incomplete. Ambele operațiuni din panoul propriu necesită autentificarea Cloudflare Access și configurarea secretelor GitHub.
+
+## Comutatoare ON/OFF pentru toate secțiunile
+
+În panoul propriu `/admin/` → **Vizibilitatea secțiunilor** există comutatoare individuale pentru Prima pagină, Introducere, Servicii, Despre clinică, Echipa, Înainte / După, Recenzii, Contact și hartă și Program/informații din subsol. După schimbarea fiecărui comutator se apasă **Salvează modificările**. Informația ascunsă rămâne salvată în fișiere, inclusiv fotografiile și traducerile.
+
+La dezactivare, pagina publică ascunde secțiunea și legătura ei din meniul principal (dacă există); logo-ul, antetul și structura de bază a subsolului rămân accesibile. Comutatoarele sunt disponibile și în Pages CMS, la **Informații și prima pagină → Vizibilitatea secțiunilor**.
+
+**Stări implicite:** toate secțiunile vizibile, cu excepția „Înainte / După”, care rămâne inițial ascunsă și necesită un caz cu două poze, `consent: true` și `published: true` înainte să poată fi văzută de vizitatori.
+
+Modificările rămân pe ramura `joiandent-v2.5`, până la testarea și publicarea aprobată a site-ului principal.
