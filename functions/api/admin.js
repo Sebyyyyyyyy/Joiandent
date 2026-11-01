@@ -68,9 +68,17 @@ async function github(env,path,method="GET",data){
 function validate(resource,value){
   if(resource==="general"){
     if(!value||Array.isArray(value)||typeof value!=="object")throw new Error("Format general invalid.");
-    const allowed=["heroTitle","heroImage","introTitle","introDescription","aboutTitle","aboutDescription","phone","phoneLink","email","address","hours","break","showBeforeAfter"];
+    const allowed=["heroTitle","heroImage","introTitle","introDescription","aboutTitle","aboutDescription","phone","phoneLink","email","address","hours","break","showBeforeAfter","sectionsVisibility"];
     if(Object.keys(value).some(k=>!allowed.includes(k)))throw new Error("Câmp nepermis.");
     if("showBeforeAfter" in value && typeof value.showBeforeAfter!=="boolean")throw new Error("Opțiunea de afișare trebuie să fie activată sau dezactivată.");
+    if("sectionsVisibility" in value){
+      const v=value.sectionsVisibility;
+      const allowedSections=["home","intro","services","about","team","beforeAfter","reviews","contact","hours"];
+      if(!v || Array.isArray(v) || typeof v!=="object" || Object.keys(v).some(key=>!allowedSections.includes(key) || typeof v[key]!=="boolean"))
+        throw new Error("Vizibilitatea secțiunilor trebuie să conțină doar opțiuni ON/OFF valide.");
+      if("beforeAfter" in v && "showBeforeAfter" in value && v.beforeAfter!==value.showBeforeAfter)
+        throw new Error("Setările Înainte / După trebuie să fie sincronizate.");
+    }
   }else{
     if(!Array.isArray(value)||value.length>100)throw new Error("Lista trebuie să conțină maximum 100 de elemente.");
     for(const item of value){
