@@ -118,6 +118,11 @@ function fillCms() {
  if(team){team.id='team-generated';team.innerHTML=(cms.team||[]).filter(t=>validImage(t.image)).map(t=> t.type==='team'?`<article class="assistants-card is-visible"><div class="assistants-photo"><img src="${safe(t.image)}" alt="${safe(t.name)}" loading="lazy" decoding="async"></div><div class="assistants-info"><div><span class="person-label">${safe(tx(t.role))}</span><h3>${safe(tr(t.name))}</h3></div><p>${safe(t.details||'').replace(/\n/g,'<br>')}</p></div></article>`:`<article class="person-card is-visible"><div class="person-photo"><img src="${safe(t.image)}" alt="${safe(t.name)}" loading="lazy" decoding="async"></div><div class="person-info"><span class="person-label">${safe(tx(t.role))}</span><h3>${safe(tr(t.name))}</h3></div></article>`).join('');}
  const select=qs('.appointment-form select[name="Serviciu"]');
  if(select){const chosen=select.value;select.innerHTML=`<option value="" disabled selected>${safe(tr('Alege serviciul'))}</option>`+(cms.services||[]).map(s=>`<option value="${safe(s.title?.ro||'')}">${safe(tx(s.title))}</option>`).join('')+`<option value="Consultație / Alt serviciu">${safe(ts('consultation'))}</option>`;select.value=chosen||'';}
+ // Case-study visibility: hidden by default, until enabled and with approved cases.
+ const casesVisible=g.showBeforeAfter===true && (cms.cases||[]).some(c=>c.published===true&&c.consent===true&&validImage(c.before)&&validImage(c.after));
+ const casesSection=qs('#rezultate');
+ if(casesSection)casesSection.hidden=!casesVisible;
+ qsa('a[href="#rezultate"]').forEach(link=>{link.hidden=!casesVisible;});
  renderCases();renderReviews();
 }
 function renderCases(){
