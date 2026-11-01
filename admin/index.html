@@ -125,12 +125,33 @@ h2{font-size:19px;letter-spacing:-.03em;margin:0}
 .visibility-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .visibility-feedback{font-size:12px;color:#5f728e;flex:1;line-height:1.5}
 @media(max-width:480px){.visibility-panel{padding:15px}.visibility-actions>.btn{width:100%}}
+
+/* Site section visibility controls */
+.section-switch-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
+.section-switch-card{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fafdff;border:1px solid #e1e9f3;border-radius:14px;padding:17px 18px;min-height:98px;transition:background .2s,border-color .2s}
+.section-switch-card.is-on{background:#f6f9ff;border-color:#cadaee}
+.section-switch-card .meta{min-width:0;flex:1}
+.section-switch-card .name{font-size:14px;font-weight:750;color:#253751;margin-bottom:5px}
+.section-switch-card .detail{font-size:12px;line-height:1.5;color:#758399}
+.section-switch-card .switch-wrap{display:flex;align-items:center;gap:10px;flex-shrink:0;cursor:pointer}
+.section-switch-card .state{font-weight:800;letter-spacing:.04em;font-size:11px;color:#8795a9;min-width:30px}
+.section-switch-card.is-on .state{color:#247054}
+.section-switch-card .switch-wrap input{position:absolute;opacity:0;width:1px;height:1px}
+.section-switch-card .switch-track{display:block;width:51px;height:29px;background:#b8c3d0;border-radius:20px;padding:3px;transition:background .2s;box-shadow:inset 0 1px 3px #19274220}
+.section-switch-card .switch-track:after{content:"";display:block;width:23px;height:23px;background:#fff;box-shadow:0 2px 7px #101a2528;border-radius:50%;transition:transform .2s}
+.section-switch-card input:checked+.switch-track{background:#244b9e}
+.section-switch-card input:checked+.switch-track:after{transform:translateX(22px)}
+.section-switch-card input:focus-visible+.switch-track{outline:3px solid #90afe6;outline-offset:3px}
+.vis-note{font-size:12px;line-height:1.65;color:#677b91;margin-top:17px;border-top:1px solid #e9eef5;padding-top:17px}
+@media(max-width:900px){.section-switch-grid{grid-template-columns:1fr}}
+@media(max-width:480px){.section-switch-card{padding:15px}}
 </style></head><body>
 <div class="layout"><aside>
 <div class="brand"><img src="../assets/logo-mark.png" alt="JoianDent"><div><strong>JoianDent</strong><small>Administration</small></div></div>
 <div><p class="nav-heading">GESTIONARE SITE</p>
 <nav id="nav">
-<button data-section="general" class="selected"><span class="navicon">01</span>Pagina principală</button>
+<button data-section="visibility" class="selected"><span class="navicon">00</span> Vizibilitatea secțiunilor</button>
+<button data-section="general"><span class="navicon">01</span>Pagina principală</button>
 <button data-section="services"><span class="navicon">02</span>Servicii</button>
 <button data-section="team"><span class="navicon">03</span>Echipa clinicii</button>
 <button data-section="cases"><span class="navicon">04</span>Înainte / După</button>
@@ -152,7 +173,7 @@ h2{font-size:19px;letter-spacing:-.03em;margin:0}
 <div class="metric"><div class="metric-icon">C</div><span class="metric-label">Cazuri publicate</span><strong class="number" id="metric-cases">—</strong><span class="metric-note">Înainte și După</span></div>
 <div class="metric"><div class="metric-icon">R</div><span class="metric-label">Recenzii aprobate</span><strong class="number" id="metric-reviews">—</strong><span class="metric-note">Afișate pe site</span></div>
 </section>
-<div class="section-row"><div><div class="section-eyebrow">EDITOR DE CONȚINUT</div><h2 id="activeSection">Pagina principală</h2></div>
+<div class="section-row"><div><div class="section-eyebrow">EDITOR DE CONȚINUT</div><h2 id="activeSection">Vizibilitatea secțiunilor</h2></div>
 <span class="muted">Schimbările sunt păstrate în istoricul GitHub</span></div>
 <div id="notice" class="status">Se verifică accesul securizat. Salvarea necesită Cloudflare Access configurat.</div>
 <div class="sheet" id="content"><div class="empty">Autentificarea și încărcarea datelor sunt necesare înainte de editare.</div></div>
@@ -160,6 +181,7 @@ h2{font-size:19px;letter-spacing:-.03em;margin:0}
 </main></div><script>
 "use strict";
 const defs={
+visibility:{title:"Vizibilitatea secțiunilor",fields:[]},
 general:{title:"Informații și prima pagină",fields:[
 ["heroTitle","Titlu principal","locale"],["heroImage","Fotografia principală","image"],
 ["introTitle","Titlu introductiv","locale"],["introDescription","Text introductiv","localeText"],
@@ -172,7 +194,19 @@ cases:{title:"Cazuri Înainte / După",fields:[["id","Identificator unic","text"
 reviews:{title:"Recenzii aprobate",fields:[["id","Identificator unic","text"],["author","Nume afișat","text"],["rating","Stele (1–5)","number"],["text","Recenzie","textarea"],["published","Publică pe site","bool"]]}
 };
 const $=s=>document.querySelector(s),sectionBtns=[...document.querySelectorAll("[data-section]")];
-let currentSection="general",data=null,sha=null,authenticated=false,saving=false,dirty=false,visibilitySettings=null,visibilitySaving=false;
+const visibilityOptions=[
+ ["home","Prima pagină","Imaginea principală și mesajul de întâmpinare"],
+ ["intro","Prezentarea introductivă","Textul de introducere al clinicii"],
+ ["services","Serviciile noastre","Cele 6 categorii de servicii"],
+ ["about","Despre clinică","Prezentarea și informațiile despre clinică"],
+ ["team","Echipa noastră","Medicii și asistentele"],
+ ["beforeAfter","Înainte / După","Cazuri reale cu imagini și acordul pacientului"],
+ ["reviews","Recenzii","Opiniile publicate și formularul de recenzie"],
+ ["contact","Contact și hartă","Formularul de contact și localizarea clinicii"],
+ ["hours","Program și informații în subsol","Program, telefon și email din subsol"]
+];
+const visibilityDefaults=Object.fromEntries(visibilityOptions.map(([key])=>[key,key!=="beforeAfter"]));
+let currentSection="visibility",data=null,sha=null,authenticated=false,saving=false,dirty=false,visibilitySettings=null,visibilitySaving=false;
 function escapeHtml(v){return String(v??"").replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));}
 function setNotice(t,kind=""){const e=$("#notice");e.textContent=t;e.className="status "+kind;}
 function changeState(){dirty=true;$("#save").disabled=!authenticated||saving;$("#current").textContent="Modificări nesalvate · "+defs[currentSection].title;}
@@ -212,7 +246,7 @@ async function load(){
  if(!authenticated)return;
  $("#save").disabled=true;$("#content").innerHTML='<div class="empty">Se încarcă datele...</div>';
  try{
- const r=await api("?resource="+currentSection);data=r.data;sha=r.sha;dirty=false;
+ const r=await api("?resource="+(currentSection==="visibility"?"general":currentSection));data=r.data;sha=r.sha;dirty=false;
  visibilitySettings=null;
  if(currentSection==="cases"){
    try{
@@ -252,11 +286,25 @@ function fieldHtml(def,value,index){
 }
 function render(){
  const conf=defs[currentSection];
+ if(currentSection==="visibility"){
+   const prefs={...visibilityDefaults,...(data.sectionsVisibility||{})};
+   if(!data.sectionsVisibility && typeof data.showBeforeAfter==="boolean")prefs.beforeAfter=data.showBeforeAfter;
+   let html='<div class="listHead"><h2>Controlează ce apare pe site</h2></div>'+
+   '<p class="muted">ON — secțiunea apare. OFF — dispare de pe site și din meniu, fără să ștergi textele sau fotografiile.</p>'+
+   '<div class="section-switch-grid">'+visibilityOptions.map(([key,label,desc])=>{
+     const on=prefs[key]===true;
+     return '<div class="section-switch-card '+(on?'is-on':'')+'"><div class="meta"><div class="name">'+escapeHtml(label)+'</div><div class="detail">'+escapeHtml(desc)+'</div></div>'+
+       '<label class="switch-wrap"><span class="state">'+(on?'ON':'OFF')+'</span><input type="checkbox" data-section-toggle="'+key+'" '+(on?'checked':'')+' aria-label="Afișează '+escapeHtml(label)+'"><span class="switch-track" aria-hidden="true"></span></label></div>';
+   }).join('')+'</div><p class="vis-note">Secțiunea „Înainte / După” rămâne ascunsă dacă nu există cel puțin un caz complet, aprobat și cu acordul pacientului. Antetul, logo-ul și structura subsolului rămân vizibile pentru navigare.</p>';
+   $("#content").innerHTML=html;$("#save").disabled=!authenticated;
+   return;
+ }
  let html='<div class="listHead"><h2>'+conf.title+'</h2>';
  if(Array.isArray(data))html+='<button class="btn" id="add">+ Adaugă</button>';
  html+='</div>';
  if(currentSection==="cases"){
-   const visible=visibilitySettings?.value?.showBeforeAfter===true;
+   const visible=visibilitySettings?.value?.sectionsVisibility?.beforeAfter===true ||
+     (!visibilitySettings?.value?.sectionsVisibility && visibilitySettings?.value?.showBeforeAfter===true);
    const ready=data.filter(c=>c.published===true&&c.consent===true&&c.before&&c.after).length;
    html+='<section class="visibility-panel"><div class="visibility-heading"><div><div class="visibility-title">Afișare pe site: Înainte / După</div>'+
    '<p class="visibility-info">Poți pregăti fotografiile și descrierile fără să fie vizibile pentru pacienți. Activează afișarea doar când clinica este pregătită.</p></div>'+
@@ -283,9 +331,23 @@ function syncChange(el){
 }
 $("#content").addEventListener("input",e=>{if(e.target.dataset.key!==undefined)syncChange(e.target)});
 $("#content").addEventListener("change",async e=>{
+ if(e.target.dataset.sectionToggle!==undefined){
+   if(currentSection!=="visibility"||!data)return;
+   const key=e.target.dataset.sectionToggle;
+   if(!visibilityOptions.some(([k])=>k===key))return;
+   if(!data.sectionsVisibility)data.sectionsVisibility={...visibilityDefaults};
+   data.sectionsVisibility[key]=e.target.checked;
+   if(key==="beforeAfter")data.showBeforeAfter=e.target.checked;
+   const card=e.target.closest(".section-switch-card");
+   card?.classList.toggle("is-on",e.target.checked);
+   const label=card?.querySelector(".state");if(label)label.textContent=e.target.checked?"ON":"OFF";
+   changeState();return;
+ }
  if(e.target.id==="caseVisibilityToggle"){
    if(!visibilitySettings)return;
    visibilitySettings.value.showBeforeAfter=e.target.checked;
+   if(!visibilitySettings.value.sectionsVisibility)visibilitySettings.value.sectionsVisibility={...visibilityDefaults};
+   visibilitySettings.value.sectionsVisibility.beforeAfter=e.target.checked;
    const button=$("#saveCaseVisibility");if(button)button.disabled=false;
    const status=$("#caseVisibilityStatus");
    if(status)status.textContent=e.target.checked?
@@ -346,7 +408,7 @@ $("#save").addEventListener("click",async()=>{
  try{
   if(currentSection==="cases"&&data.some(c=>c.published&&!c.consent))throw new Error("Pentru fiecare caz publicat trebuie bifat acordul.");
   if(currentSection==="reviews"&&data.some(r=>r.published&&(!r.author||!r.text)))throw new Error("Recenziile publicate trebuie să conțină nume și text.");
-  const r=await api("?resource="+currentSection,{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify({value:data,sha})});
+  const r=await api("?resource="+(currentSection==="visibility"?"general":currentSection),{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify({value:data,sha})});
   sha=r.sha;dirty=false;refreshMetrics();setNotice("Salvat în siguranță. Conținutul se va actualiza după publicarea automată a noii versiuni.","good");
   $("#current").textContent=defs[currentSection].title+" · Toate modificările sunt salvate.";
  }catch(e){setNotice("Salvarea a eșuat: "+e.message,"bad");}
