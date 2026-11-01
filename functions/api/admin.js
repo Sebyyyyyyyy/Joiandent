@@ -70,6 +70,7 @@ function validate(resource,value){
     if(!value||Array.isArray(value)||typeof value!=="object")throw new Error("Format general invalid.");
     const allowed=["heroTitle","heroImage","introTitle","introDescription","aboutTitle","aboutDescription","phone","phoneLink","email","address","hours","break","showBeforeAfter"];
     if(Object.keys(value).some(k=>!allowed.includes(k)))throw new Error("Câmp nepermis.");
+    if("showBeforeAfter" in value && typeof value.showBeforeAfter!=="boolean")throw new Error("Opțiunea de afișare trebuie să fie activată sau dezactivată.");
   }else{
     if(!Array.isArray(value)||value.length>100)throw new Error("Lista trebuie să conțină maximum 100 de elemente.");
     for(const item of value){
