@@ -2068,3 +2068,6 @@ body.modal-open {
 @media(max-width:680px){.services-section .services-grid{grid-template-columns:1fr}.services-section .service-card{min-height:180px}.services-section .service-card h3,.services-section .service-card:nth-child(2) h3{font-size:clamp(19px,5.8vw,24px)}}
 .results-section h2,.testimonials-section h2{max-width:100%;font-size:clamp(29px,3.2vw,46px);line-height:1.18;overflow-wrap:normal;word-break:normal;text-wrap:balance}
 @media(max-width:680px){.results-section h2,.testimonials-section h2{font-size:clamp(25px,7.3vw,34px);overflow-wrap:anywhere}}
+
+/* Section visibility is controlled by the clinic in the admin panel. */
+.results-section[hidden], a[href="#rezultate"][hidden] { display: none !important; }
