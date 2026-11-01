@@ -39,5 +39,16 @@
     "en": "Lunch break: 12:30–14:30"
   },
   "heroImage": "assets/clinic-hero-original.jpg",
-  "showBeforeAfter": false
+  "showBeforeAfter": false,
+  "sectionsVisibility": {
+    "home": true,
+    "intro": true,
+    "services": true,
+    "about": true,
+    "team": true,
+    "beforeAfter": false,
+    "reviews": true,
+    "contact": true,
+    "hours": true
+  }
 }
