@@ -2182,105 +2182,120 @@ button[type="submit"]:disabled{opacity:.65;cursor:not-allowed}
   .site-header .nav-shell > .lang-switch .lang-btn {font-size: 11px; min-width: 27px; padding: 8px 5px;}
 }
 
-/* Hero content becomes a compact editorial panel, clear of the clinic sign. */
+/* JoianDent — classic centered hero, restored on owner's request.
+   Transparent heading over the real clinic photograph; safe for all 3 languages. */
 .hero {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  min-height: 610px;
-  height: min(780px, calc(100svh - 84px));
-  max-height: 800px;
-  padding: clamp(26px, 5.4vw, 105px);
+  position: relative;
+  display: block;
+  min-height: 660px;
+  height: calc(100svh - 84px);
+  max-height: 860px;
+  padding: 0;
+  overflow: hidden;
 }
 .hero-image {
-  object-position: center 52%;
+  object-fit: cover;
+  object-position: center 58%;
   transform: none;
 }
 .hero-overlay {
   background:
-    linear-gradient(90deg, rgba(8, 19, 42, .04) 0%, rgba(8, 19, 42, .09) 31%, rgba(8, 19, 42, .34) 57%, rgba(8, 19, 42, .66) 100%),
-    linear-gradient(0deg, rgba(8, 19, 42, .18), transparent 38%);
+    linear-gradient(180deg, rgba(10, 18, 36, .50), rgba(10, 18, 36, .61)),
+    radial-gradient(circle at 50% 48%, rgba(10, 24, 55, .18), transparent 64%);
 }
 .hero-content {
-  width: min(100%, 510px);
-  height: auto;
+  position: relative;
+  width: min(1040px, calc(100% - 48px));
+  max-width: 1040px;
+  height: 100%;
   min-width: 0;
-  margin: 0;
-  padding: clamp(28px, 3.2vw, 45px);
+  margin: 0 auto;
+  padding: 46px 14px;
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
   justify-content: center;
-  text-align: left;
+  align-items: center;
+  text-align: center;
   color: #fff;
-  background: rgba(10, 29, 63, .68);
-  border: 1px solid rgba(255, 255, 255, .19);
-  border-radius: 23px;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 30px 75px rgba(5, 18, 43, .22);
+  background: none;
+  border: 0;
+  border-radius: 0;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
 }
 .hero-content .eyebrow {
-  margin-bottom: 17px;
-  opacity: 1;
-  color: #d9e7ff;
-  font-size: 11px;
-  letter-spacing: .17em;
-  text-align: left;
+  margin: 0 0 15px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .20em;
+  opacity: .95;
+  text-align: center;
 }
 .hero h1 {
-  max-width: 100%;
+  width: 100%;
+  max-width: 1020px;
   margin: 0;
-  font-family: "Montserrat", system-ui, sans-serif;
-  font-size: clamp(39px, 3.45vw, 56px);
+  font-family: "Playfair Display SC", "Montserrat", Georgia, serif;
+  font-size: clamp(45px, 5.1vw, 78px);
   font-weight: 700;
-  line-height: 1.09;
-  letter-spacing: -.045em;
-  overflow-wrap: normal;
+  line-height: 1.08;
+  letter-spacing: -.025em;
+  overflow-wrap: break-word;
   word-break: normal;
   text-wrap: balance;
+  text-shadow: 0 3px 23px rgba(0, 0, 0, .16);
 }
 .hero-content .hero-address {
-  margin: 18px 0 27px;
+  margin: 20px 0 31px;
   font-family: "Montserrat", system-ui, sans-serif;
-  font-size: clamp(16px, 1.5vw, 20px);
-  font-weight: 500;
-  color: #eff5ff;
+  font-size: clamp(18px, 1.85vw, 25px);
+  font-weight: 650;
+  color: #fff;
 }
 .hero-content .btn {
-  min-height: 51px;
-  border-radius: 11px;
-  padding-inline: 24px;
+  min-height: 52px;
+  padding: 12px 27px;
+  border-radius: 9px;
   font-family: "Montserrat", system-ui, sans-serif;
   font-size: 14px;
+  font-weight: 700;
 }
-.hero-signature {display: none;}
+.hero-signature {
+  display: block;
+  font-size: 12px;
+  opacity: .82;
+}
+html[lang="ru"] .hero h1 {
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: clamp(38px, 4.8vw, 68px);
+  letter-spacing: -.04em;
+}
 @media (max-width: 980px) {
   .hero {
-    min-height: 620px;
-    height: min(760px, calc(100svh - 72px));
-    padding: 24px 22px 38px;
-    align-items: flex-end;
-    justify-content: center;
+    min-height: 600px;
+    height: calc(100svh - 72px);
+    max-height: 780px;
   }
-  .hero-image {object-position: 35% center;}
-  .hero-overlay {
-    background: linear-gradient(180deg, rgba(8,19,42,.02) 0%, rgba(8,19,42,.10) 32%, rgba(8,19,42,.83) 100%);
-  }
+  .hero-image { object-position: 54% center; }
   .hero-content {
-    width: min(100%, 590px);
-    margin: 0 auto;
-    padding: clamp(25px, 4vw, 35px);
+    width: min(100% - 38px, 800px);
+    padding: 38px 8px;
   }
-  .hero h1 {font-size: clamp(34px, 5.7vw, 49px);}
+  .hero h1 { font-size: clamp(40px, 7vw, 62px); }
+  html[lang="ru"] .hero h1 { font-size: clamp(34px, 6vw, 52px); }
 }
 @media (max-width: 680px) {
   .site-header .brand-text {font-size: 17px;}
   .site-header .brand-logo-mark {width: 40px; height: 40px; flex-basis: 40px;}
-  .hero {min-height: 600px; height: min(740px, calc(100svh - 72px)); padding: 16px 16px 27px;}
-  .hero-image {object-position: 31% center;}
-  .hero-content {width: 100%; padding: 26px 23px; border-radius: 19px;}
-  .hero-content .eyebrow {font-size: 10px; letter-spacing: .13em;}
-  .hero h1 {font-size: clamp(30px, 9vw, 43px); line-height: 1.08; letter-spacing: -.045em;}
-  .hero-content .hero-address {font-size: 16px; margin: 15px 0 22px;}
+  .hero { min-height: 560px; height: calc(100svh - 72px); max-height: 730px; }
+  .hero-image {object-position: 60% center;}
+  .hero-overlay {background: linear-gradient(180deg, rgba(10,18,36,.48), rgba(10,18,36,.66));}
+  .hero-content {width: min(100% - 28px, 540px); padding: 30px 4px;}
+  .hero-content .eyebrow {font-size: 10px; letter-spacing: .14em;}
+  .hero h1 {font-size: clamp(33px, 9.3vw, 49px); line-height: 1.07;}
+  html[lang="ru"] .hero h1 {font-size: clamp(29px, 8.1vw, 43px);}
+  .hero-content .hero-address {font-size: 17px; margin: 17px 0 26px;}
   .hero-content .btn {min-height: 48px; font-size: 13px;}
 }
