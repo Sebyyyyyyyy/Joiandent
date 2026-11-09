@@ -45,7 +45,7 @@
     "intro": true,
     "services": true,
     "about": true,
-    "team": true,
+    "team": false,
     "beforeAfter": false,
     "reviews": true,
     "contact": true,
