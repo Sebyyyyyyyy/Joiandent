@@ -32,16 +32,5 @@
     "image": "assets/assistants-web.webp",
     "type": "team",
     "details": "Ana Cojocari\nAna Mușet\nVera Bîlea"
-  },
-  {
-    "id": "TEST",
-    "type": "doctor",
-    "name": "SEBASTIAN BUNEA",
-    "role": {
-      "ro": "Maladet",
-      "ru": "ff",
-      "en": "ff"
-    },
-    "image": "assets/uploads/1794229816456-8430fbdf4571465a.jpg"
   }
 ]
