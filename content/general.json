@@ -47,7 +47,7 @@
     "about": true,
     "team": true,
     "beforeAfter": false,
-    "reviews": true,
+    "reviews": false,
     "contact": true,
     "hours": true
   }
