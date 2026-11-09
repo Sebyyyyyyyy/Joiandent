@@ -1,3 +1,12 @@
+/* Keep the clinic's public URL clean when opened through a tagged link. */
+try {
+  const cleanUrl = new URL(window.location.href);
+  if (cleanUrl.searchParams.get("utm_source") === "chatgpt.com") {
+    cleanUrl.searchParams.delete("utm_source");
+    window.history.replaceState(window.history.state, "", cleanUrl.pathname + cleanUrl.search + cleanUrl.hash);
+  }
+} catch (_) {}
+
 const header = document.querySelector(".site-header");
 const menuBtn = document.querySelector(".menu-toggle");
 const mobileNav = document.querySelector(".mobile-nav");
