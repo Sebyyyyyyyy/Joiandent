@@ -136,7 +136,7 @@ function fillCms() {
  assign('.intro-copy > p:not(.kicker)',g.introDescription);
  assign('.about-copy > h3',g.aboutTitle);assign('.about-copy > p',g.aboutDescription);
  assign('.hero-address',g.address);
- if(g.email&&/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(g.email)){qsa('form.contact-form,form.appointment-form,form.review-form').forEach(f=>f.action='https://formsubmit.co/'+g.email);}
+ // Form routing stays on the clinic's Cloudflare Pages Functions endpoint (/api/forms).
  const map=qs('.map-wrap iframe');if(map&&g.address)map.src='https://www.google.com/maps?q='+encodeURIComponent('JoianDent, '+g.address+', Ungheni, Moldova')+'&output=embed';
  const img=qs('.hero-image');if(img&&validImage(g.heroImage))img.src=g.heroImage;
  const info=qs('.footer-grid > div:nth-child(2)');
@@ -181,16 +181,6 @@ qsa('[data-lang]').forEach(b=>b.addEventListener('click',()=>{
 }));
 qs('#open-review-form')?.addEventListener('click',()=>{const f=qs('#review-form');f.hidden=false;f.scrollIntoView({behavior:'smooth',block:'center'});qs('[name="author"]',f)?.focus();});
 qs('.review-form-close')?.addEventListener('click',()=>{qs('#review-form').hidden=true;});
-qs('#review-form')?.addEventListener('submit',e=>{
- const form=e.currentTarget,feedback=qs('#review-feedback');
- const email=cms?.general?.email;
- if(!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
-   e.preventDefault();feedback.textContent=ts('fail');return;
- }
- // FormSubmit sends clinic an email; the clinic approves and manually publishes in Pages CMS.
- // No patient review is directly written to GitHub or automatically published.
- form.action='https://formsubmit.co/'+email;
-});
 translateStatic();
 (async()=>{
  try{
