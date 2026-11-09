@@ -101,3 +101,21 @@ La dezactivare, pagina publică ascunde secțiunea și legătura ei din meniul p
 **Stări implicite:** toate secțiunile vizibile, cu excepția „Înainte / După”, care rămâne inițial ascunsă și necesită un caz cu două poze, `consent: true` și `published: true` înainte să poată fi văzută de vizitatori.
 
 Modificările rămân pe ramura `joiandent-v2.5`, până la testarea și publicarea aprobată a site-ului principal.
+
+## Formulare fără FormSubmit
+
+Formularele de **Contact**, **Programare** și **Recenzii** trimit către `/api/forms` (Cloudflare Pages Function). FormSubmit nu mai este folosit. Interfața arată pe aceeași pagină dacă trimiterea a fost acceptată sau a eșuat. Recenziile sunt trimise clinicii spre verificare, nu publicate automat.
+
+### Configurare (Cloudflare Pages → joiandent-test → Settings → Variables and Secrets → Production)
+
+1. În [Resend](https://resend.com/domains) verifică domeniul de expediere `joiandent.md` (sau un subdomeniu deținut și verificat). Adaugă **doar înregistrările DNS indicate pentru expediere**, fără a înlocui înregistrările existente pentru primirea emailurilor.
+2. Creează un API key Resend cu acces pentru trimiterea emailurilor, apoi salvează-l în Cloudflare ca **Secret** `RESEND_API_KEY`. **Nu introduce cheia în cod, GitHub sau chat.**
+3. Adaugă `MAIL_FROM` ca **Text** (de exemplu `JoianDent <notificari@joiandent.md>`, numai după verificarea domeniului) și `MAIL_TO` ca **Text**: adresa reală a clinicii, de exemplu `joiandent2006@gmail.com`.
+4. În Cloudflare → **Turnstile** creează un widget protejat pentru hostul de test `joiandent-test.pages.dev` și, când migrezi, și pentru `joiandent.md` (sau folosește un widget separat pentru producție). Salvează `TURNSTILE_SITE_KEY` ca **Text** și `TURNSTILE_SECRET_KEY` ca **Secret**.
+5. Redeploy proiectul Pages de test după adăugarea variabilelor. Verifică `/api/forms` prin GET: `ready: true` indică faptul că toate valorile necesare sunt prezente. Folosește apoi formulare reale de test (fără date medicale sensibile) și confirmă primirea mesajelor în inboxul clinicii.
+
+**Securitate:** API-ul refuză solicitări dacă lipsesc secretele, verifică Turnstile pe server, ține secretele în Cloudflare și limitează datele acceptate. Trimiterea este acceptată de Resend, însă livrarea efectivă în inbox poate depinde de configurația DNS, filtrele spam și disponibilitatea furnizorilor. Nu activa pe site-ul oficial până când nu testezi primirea fiecărui tip de email.
+
+**Atenție:** adresa publică afișată în `content/general.json` se poate schimba din panou, dar destinatarul emailurilor este configurat separat prin `MAIL_TO` în Cloudflare; la schimbarea emailului clinicii trebuie actualizate ambele.
+
+**Notă despre confidențialitate:** evită transmiterea datelor medicale sensibile prin formularele publice; mesajele sunt procesate de furnizorul extern de email. Dacă nu este permis pentru datele pacienților, folosește un sistem autorizat de clinică, cu garanțiile juridice și operaționale necesare.
