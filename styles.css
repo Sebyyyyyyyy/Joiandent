@@ -2076,3 +2076,17 @@ body.modal-open {
 .site-header nav a[hidden], main section[hidden], footer .footer-info[hidden], .services-cta[hidden] {
   display: none !important;
 }
+
+/* V2.5 — in-page email feedback, no third-party redirects */
+.form-feedback{display:block;margin:13px 0 0;font:600 13px/1.65 Montserrat,system-ui,sans-serif;border-radius:12px;max-width:100%}
+.form-feedback:empty{display:none}
+.form-feedback[data-state="success"],.form-feedback[data-state="reviewSuccess"]{background:#e9f8f0;color:#186347;border:1px solid #b8e7d1;padding:12px 15px}
+.form-feedback[data-state="failure"],.form-feedback[data-state="unavailable"],.form-feedback[data-state="security"]{background:#fff2f1;color:#9a332e;border:1px solid #f0ceca;padding:12px 15px}
+.form-feedback[data-state="sending"]{background:#eff5ff;color:#244b8f;border:1px solid #d8e4fa;padding:12px 15px}
+.form-honeypot{position:absolute!important;left:-10000px!important;top:-10000px!important;opacity:0!important;pointer-events:none!important}
+.contact-form .form-feedback,.contact-form .turnstile-box{grid-column:1/-1}
+.contact-form .turnstile-box{min-height:65px}
+.appointment-form .turnstile-box,.review-form .turnstile-box{margin:10px 0 6px;min-height:65px}
+.contact-form .form-feedback{justify-self:stretch}
+.form-feedback[data-state]{text-wrap:pretty}
+button[type="submit"]:disabled{opacity:.65;cursor:not-allowed}
