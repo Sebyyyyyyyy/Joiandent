@@ -243,13 +243,14 @@
 <div class="section-eyebrow">PĂRERILE PACIENȚILOR</div>
 <div class="reviews-header"><div><h2 id="reviews-heading">Experiențele pacienților noștri</h2><p class="section-lead">Recenzii publicate după verificarea și aprobarea clinicii.</p></div><button class="btn btn-primary" id="open-review-form" type="button">Lasă o recenzie</button></div>
 <div class="reviews-grid" id="reviews-list"><div class="section-empty">Încă nu sunt recenzii publicate.</div></div>
-<form class="review-form" hidden="" id="review-form" action="https://formsubmit.co/joiandent2006@gmail.com" method="POST">
-<input type="hidden" name="_subject" value="Recenzie nouă de verificat — JoianDent" />
-<input type="hidden" name="_template" value="table" />
+<form class="review-form" hidden="" id="review-form" action="/api/forms" method="POST">
+
+
 <div class="review-form-head"><h3>Trimite o recenzie</h3><button aria-label="Închide formularul" class="review-form-close" type="button">×</button></div>
 <p>Recenzia va fi trimisă prin email clinicii. După verificare, poate fi adăugată în panoul Pages CMS. Nu include date medicale sau personale sensibile.</p>
 <div class="review-form-fields"><label>Nume afișat<input maxlength="70" name="author" placeholder="Ex: Ana M." required="" type="text"/></label><label>Evaluare<select name="rating" required=""><option value="5">★★★★★ — 5</option><option value="4">★★★★ — 4</option><option value="3">★★★ — 3</option><option value="2">★★ — 2</option><option value="1">★ — 1</option></select></label><label class="review-full">Recenzia ta<textarea maxlength="700" minlength="10" name="text" placeholder="Spune-ne despre experiența ta..." required="" rows="4"></textarea></label><label class="review-full review-consent"><input name="consent" required="" type="checkbox"/> Sunt de acord ca recenzia și numele afișat să fie publicate după aprobare.</label><div aria-hidden="true" class="review-hp"><input autocomplete="off" name="_honey" tabindex="-1" type="text"/></div></div>
-<button class="btn btn-primary" type="submit">Trimite spre aprobare</button><p class="review-feedback" id="review-feedback" role="status"></p>
+<div class="turnstile-box" data-turnstile-slot aria-label="Verificare anti-spam"></div>
+<button class="btn btn-primary" type="submit">Trimite spre aprobare</button><p class="review-feedback form-feedback" id="review-feedback" role="status" aria-live="polite"></p>
 </form>
 </div>
 </section><section class="contact-section" id="contact">
@@ -260,10 +261,10 @@
 <div class="contact-panel">
 <p class="contact-label">Contact</p>
 <h2>Lăsați-ne un mesaj</h2>
-<form action="https://formsubmit.co/joiandent2006@gmail.com" class="contact-form" method="POST">
-<input name="_subject" type="hidden" value="Mesaj nou de pe site-ul JoianDent"/>
-<input name="_captcha" type="hidden" value="false"/>
-<input name="_template" type="hidden" value="table"/>
+<form action="/api/forms" class="contact-form" method="POST">
+
+
+
 <label>
 <span>Nume și prenume</span>
 <input autocomplete="name" name="Nume" required="" type="text"/>
@@ -285,7 +286,11 @@
 <textarea name="Mesaj" required="" rows="5"></textarea>
 </label>
 <p class="privacy-note full">Nu includeți în formular informații medicale sensibile.</p>
+<div class="turnstile-box" data-turnstile-slot aria-label="Verificare anti-spam"></div>
 <button class="btn btn-primary submit-btn" type="submit">Trimite</button>
+<p class="form-feedback" role="status" aria-live="polite"></p>
+
+<div class="form-honeypot" aria-hidden="true"><label>Website<input type="text" name="_honey" autocomplete="off" tabindex="-1"></label></div>
 </form>
 </div>
 </section>
@@ -302,10 +307,10 @@
 </div>
 </div>
 <p class="modal-intro">Completează datele de mai jos, iar solicitarea va fi trimisă direct clinicii.</p>
-<form action="https://formsubmit.co/joiandent2006@gmail.com" class="appointment-form" method="POST">
-<input name="_subject" type="hidden" value="Programare nouă de pe site-ul JoianDent"/>
-<input name="_captcha" type="hidden" value="false"/>
-<input name="_template" type="hidden" value="table"/>
+<form action="/api/forms" class="appointment-form" method="POST">
+
+
+
 <label>
 <span>Nume și prenume</span>
 <input autocomplete="name" name="Nume și prenume" placeholder="Ex: Ion Popescu" required="" type="text"/>
@@ -335,9 +340,13 @@
 <textarea name="Mesaj" placeholder="Scrie pe scurt cum te putem ajuta..." required="" rows="5"></textarea>
 </label>
 <p class="modal-privacy modal-full">Nu include informații medicale sensibile în mesaj.</p>
+<div class="turnstile-box" data-turnstile-slot aria-label="Verificare anti-spam"></div>
 <button class="btn btn-primary modal-submit modal-full" type="submit">
           Trimite solicitarea
         </button>
+<p class="form-feedback" role="status" aria-live="polite"></p>
+
+<div class="form-honeypot" aria-hidden="true"><label>Website<input type="text" name="_honey" autocomplete="off" tabindex="-1"></label></div>
 </form>
 </section>
 </div>
@@ -372,6 +381,6 @@
 <p>© <span id="year"></span> JoianDent. Toate drepturile rezervate.</p>
 </div>
 </footer>
-<script src="script.js"></script><script src="enhancements.js" defer></script>
+<script src="script.js"></script><script src="enhancements.js" defer></script><script src="forms.js" defer></script>
 </body>
 </html>
