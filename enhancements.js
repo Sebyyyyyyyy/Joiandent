@@ -113,9 +113,8 @@ function applySectionVisibility(g){
  if(typeof prefs.beforeAfter!=='boolean')effective.beforeAfter=g.showBeforeAfter===true;
  const approvedCases=(cms?.cases||[]).some(c=>c.published===true&&c.consent===true&&validImage(c.before)&&validImage(c.after));
  effective.beforeAfter=effective.beforeAfter&&approvedCases;
- // Reviews stay hidden until at least one approved, published review exists.
- const approvedReviews=(cms?.reviews||[]).some(r=>r.published===true&&typeof r.author==='string'&&r.author.trim()&&typeof r.text==='string'&&r.text.trim());
- effective.reviews=effective.reviews&&approvedReviews;
+ // The review section may accept submissions before a published review exists.
+ // An explicit admin visibility OFF setting still takes precedence.
  Object.entries(visibilityMap).forEach(([key,config])=>{
    const visible=effective[key]!==false;
    const section=qs(config.selector);
@@ -173,7 +172,9 @@ function renderCases(){
 function renderReviews(){
  const container=qs('#reviews-list');if(!container||!cms)return;
  const reviews=(cms.reviews||[]).filter(r=>r.published&&r.text&&r.author);
- container.innerHTML=reviews.length?reviews.map(r=>`<article class="review-card"><div class="review-stars" aria-label="${safe(String(r.rating))} / 5">${'★'.repeat(Math.max(1,Math.min(5,Number(r.rating)||5)))}${'☆'.repeat(5-Math.max(1,Math.min(5,Number(r.rating)||5)))}</div><blockquote>${safe(r.text)}</blockquote><div class="review-author">${safe(r.author)}</div></article>`).join(''):`<div class="section-empty">${safe(ts('emptyReviews'))}</div>`;
+ // Hide only the empty review cards area, never the submission control.
+ container.style.display=reviews.length?'':'none';
+ container.innerHTML=reviews.length?reviews.map(r=>`<article class="review-card"><div class="review-stars" aria-label="${safe(String(r.rating))} / 5">${'★'.repeat(Math.max(1,Math.min(5,Number(r.rating)||5)))}${'☆'.repeat(5-Math.max(1,Math.min(5,Number(r.rating)||5)))}</div><blockquote>${safe(r.text)}</blockquote><div class="review-author">${safe(r.author)}</div></article>`).join(''):'';
 }
 qsa('[data-lang]').forEach(b=>b.addEventListener('click',()=>{
  language=b.dataset.lang;try{localStorage.setItem(localeKey,language)}catch(e){}
