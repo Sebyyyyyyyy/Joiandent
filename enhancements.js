@@ -113,6 +113,9 @@ function applySectionVisibility(g){
  if(typeof prefs.beforeAfter!=='boolean')effective.beforeAfter=g.showBeforeAfter===true;
  const approvedCases=(cms?.cases||[]).some(c=>c.published===true&&c.consent===true&&validImage(c.before)&&validImage(c.after));
  effective.beforeAfter=effective.beforeAfter&&approvedCases;
+ // Reviews stay hidden until at least one approved, published review exists.
+ const approvedReviews=(cms?.reviews||[]).some(r=>r.published===true&&typeof r.author==='string'&&r.author.trim()&&typeof r.text==='string'&&r.text.trim());
+ effective.reviews=effective.reviews&&approvedReviews;
  Object.entries(visibilityMap).forEach(([key,config])=>{
    const visible=effective[key]!==false;
    const section=qs(config.selector);
