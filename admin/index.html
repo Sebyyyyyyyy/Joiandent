@@ -201,7 +201,7 @@ const visibilityOptions=[
  ["about","Despre clinică","Prezentarea și informațiile despre clinică"],
  ["team","Echipa noastră","Medicii și asistentele"],
  ["beforeAfter","Înainte / După","Cazuri reale cu imagini și acordul pacientului"],
- ["reviews","Recenzii","Opiniile publicate și formularul de recenzie"],
+ ["reviews","Recenzii","Apare automat doar când există recenzii aprobate și publicate"],
  ["contact","Contact și hartă","Formularul de contact și localizarea clinicii"],
  ["hours","Program și informații în subsol","Program, telefon și email din subsol"]
 ];
@@ -295,7 +295,7 @@ function render(){
      const on=prefs[key]===true;
      return '<div class="section-switch-card '+(on?'is-on':'')+'"><div class="meta"><div class="name">'+escapeHtml(label)+'</div><div class="detail">'+escapeHtml(desc)+'</div></div>'+
        '<label class="switch-wrap"><span class="state">'+(on?'ON':'OFF')+'</span><input type="checkbox" data-section-toggle="'+key+'" '+(on?'checked':'')+' aria-label="Afișează '+escapeHtml(label)+'"><span class="switch-track" aria-hidden="true"></span></label></div>';
-   }).join('')+'</div><p class="vis-note">Secțiunea „Înainte / După” rămâne ascunsă dacă nu există cel puțin un caz complet, aprobat și cu acordul pacientului. Antetul, logo-ul și structura subsolului rămân vizibile pentru navigare.</p>';
+   }).join('')+'</div><p class="vis-note">Secțiunile „Înainte / După” și „Recenzii” apar numai dacă sunt pe ON și există conținut aprobat și publicat. Secțiunile fără conținut rămân ascunse automat. Antetul, logo-ul și structura subsolului rămân vizibile pentru navigare.</p>';
    $("#content").innerHTML=html;$("#save").disabled=!authenticated;
    return;
  }
